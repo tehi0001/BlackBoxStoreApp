@@ -19,7 +19,7 @@
 
 			.search-input {
 				width: 100%;
-				padding: 1.5em 2em;
+				padding: 1em 2em;
 				border: 1px solid lightblue;
 				border-radius: 5px 0 0 5px;
 
@@ -33,7 +33,7 @@
 				background: $primary;
 				color: #fff;
 				font-size: 18px;
-				padding: 1em 2em;
+				padding: 0em 2em;
 				border-radius: 0 5px 5px 0;
 				border: 1px solid $primary;
 
@@ -45,43 +45,80 @@
 	}
 }
 
-.main-menu-control {
-	color: #000;
+.main-toolbar {
+	background: $tint;
 
-	mat-icon {
-		margin-right: 0.3em;
-	}
-}
 
-.top-navs {
-	display: flex;
-
-	a {
-		text-align: center;
-		font-weight: normal;
+	.main-menu-control {
 		color: #000;
+		display: flex;
+		align-items: center;
 
-		&:hover {
+		&.menu-opened {
 			color: $primary;
 		}
 
 		mat-icon {
-			margin: 0;
-			padding: 0;
+			margin-right: 0.3em;
 		}
+	}
 
-		div {
-			font-size: 14px;
-			line-height: 8px;
-			margin: 0;
-			padding: 0;
-		}
+	.top-navs {
+		display: flex;
 
-		&:first-child {
-			margin-right: 2em;
+		a {
+			text-align: center;
+			font-weight: normal;
+			color: #000;
+
+			&:hover {
+				color: $primary;
+			}
+
+			mat-icon {
+				margin: 0;
+				padding: 0;
+			}
+
+			div {
+				font-size: 14px;
+				line-height: 8px;
+				margin: 0;
+				padding: 0;
+			}
+
+			&:first-child {
+				margin-right: 2em;
+			}
 		}
 	}
 }
+
+.categories-drawer {
+	height: 100%;
+
+	.categories-list {
+		background: $tint;
+		width: 20%;
+		padding: 1.5em;
+		padding-top: 0;
+
+		a {
+			display: block;
+			font-size: 15px;
+			padding:1em 0;
+
+			border-bottom: 1px solid gray;
+
+			&:hover {
+				color: $primary;
+				border-bottom-color: $primary;
+				cursor: pointer;
+			}
+		}
+	}
+}
+
 
 .route-content {
 	height: 700px;
