@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Promotion} from "../models/promotion";
 
 @Component({
   selector: 'app-promotions',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PromotionsComponent implements OnInit {
 
-  constructor() { }
+	promotion: Promotion = {
+		image_url: "assets/dummies/promotion.png",
+		promotion_url: "/promotions"
+	};
 
-  ngOnInit(): void {
-  }
+	constructor() {}
+
+	ngOnInit(): void {
+	}
 
 }

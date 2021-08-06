@@ -1,0 +1,23 @@
+.new-arrivals {
+	display: flex;
+
+	.product {
+		margin-right: 2em;
+		padding: 2em;
+
+		&:last-child {
+			margin-right: 0;
+		}
+
+		.product-img {
+			height: 190px;
+
+			img {
+				max-height: 190px;
+			}
+		}
+
+		.product-info {
+		}
+	}
+}

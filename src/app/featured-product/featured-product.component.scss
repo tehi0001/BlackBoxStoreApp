@@ -1,0 +1,16 @@
+.featured-product {
+	display: flex;
+	padding: 3em;
+
+	.product-info {
+		flex: 1 1 50%;
+		margin-right: 4em;
+	}
+	.product-banner {
+		flex: 1 1 50%;
+
+		img {
+			max-width: 100%;
+		}
+	}
+}
