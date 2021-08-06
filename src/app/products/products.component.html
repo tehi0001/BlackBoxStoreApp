@@ -1,0 +1,19 @@
+<div class="products-container">
+	<div>
+		<a routerLink="/">Home</a> > Products
+	</div>
+	<div class="product-list margin-top-2">
+		<mat-card class="product" *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">
+			<div class="product-img align-center">
+				<img src="assets/dummies/product.png" class="clickable" routerLink="/products/129">
+			</div>
+			<div class="product-info align-center margin-top-1">
+				This is a space for the product info
+			</div>
+			<div style="display: flex; justify-content: space-between; align-items: center" class="margin-top-1">
+				<div class="product-price">R209.99</div>
+				<div class="product-in-stock">In stock</div>
+			</div>
+		</mat-card>
+	</div>
+</div>
