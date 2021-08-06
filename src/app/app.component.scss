@@ -3,7 +3,7 @@
 
 .nav-bar {
 	display: flex;
-	padding: 1.5em 2em;
+	padding: 1em 2em;
 
 	.logo {
 		max-height: 60px;
@@ -11,6 +11,7 @@
 
 	.search-bar {
 		flex: 1 1 100%;
+		padding-top: 0.7em;
 
 		.search-controls {
 			width: 60%;
@@ -42,6 +43,11 @@
 				}
 			}
 		}
+	}
+
+	.top-nav-icons {
+		padding-top: 1em;
+		display: flex;
 	}
 }
 
