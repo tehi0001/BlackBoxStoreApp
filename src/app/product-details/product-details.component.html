@@ -1,1 +1,108 @@
-<p>product-details works!</p>
+<div class="product-container">
+	<div class="nav-crumbs">
+		<a routerLink="/">Home</a> > Products
+	</div>
+
+	<div class="product-details margin-top-2">
+		<div style="margin-right: 6em">
+			<div class="product-img">
+				<img src="assets/dummies/product_large@2x.png">
+			</div>
+			<div class="product-thumbnails margin-top-2">
+				<div class="thumbnail" *ngFor="let i of [1, 2, 3]">
+					<img src="assets/dummies/product.png">
+				</div>
+			</div>
+		</div>
+		<div>
+			<h1 class="product-name">This is the product name</h1>
+			<h3 class="product-category">Product category</h3>
+			<h3 class="manufacturer">Manufacturer</h3>
+			<h1 class="product-price">R208.98</h1>
+			<div class="delivery-info">
+				<mat-icon>local_shipping</mat-icon>
+				<span>Free delivery nationwide</span>
+			</div>
+
+			<div class="margin-top-2">
+				<mat-form-field appearance="fill">
+					<mat-label>Colour</mat-label>
+					<mat-select>
+						<mat-option value="Green">Green</mat-option>
+						<mat-option value="Red">Red</mat-option>
+						<mat-option value="Blue">Blue</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+
+			<div class="margin-top-1">
+				<mat-form-field appearance="fill">
+					<mat-label>Quantity</mat-label>
+					<input type="number" matInput [value]="1">
+				</mat-form-field>
+			</div>
+			<div class="margin-top-2">
+				<button class="add-to-cart-btn" mat-raised-button color="primary">ADD TO CART</button>
+			</div>
+		</div>
+	</div>
+
+	<mat-card class="product-specs">
+		<div class="product-information">
+			<h1>Product Details</h1>
+			<div class="margin-top-2">
+				This stylish and professional black leather effect zipped ring binder folio is perfect for storing documents, staying organised in meetings and for general business use. Features include: a pre-punched top-bound wide ruled A4 pad, standard 2 hole ringbinder mechanism, 4 credit card slots, 2 elastic pen holders, 1 zipped pocket and 1 tablet compartment which is capable of containing a tablet with dimensions up to 240mm by 170mm (equivalent to Apple iPad Air).
+			</div>
+		</div>
+		<div class="product-dimensions">
+			<h1>Product Dimensions</h1>
+			<table>
+				<tr>
+					<td>Height (cm)</td>
+					<td>20</td>
+				</tr>
+				<tr>
+					<td>Height (cm)</td>
+					<td>20</td>
+				</tr>
+				<tr>
+					<td>Height (cm)</td>
+					<td>20</td>
+				</tr>
+			</table>
+		</div>
+		<div class="delivery-info">
+			<h1>Delivery & Returns</h1>
+			<table>
+				<tr>
+					<td>Standard Delivery</td>
+					<td>Delivered within 2-4 working days</td>
+					<td>20</td>
+				</tr>
+				<tr>
+					<td>Standard Delivery</td>
+					<td>Delivered within 2-4 working days</td>
+					<td>20</td>
+				</tr>
+				<tr>
+					<td>Standard Delivery</td>
+					<td>Delivered within 2-4 working days</td>
+					<td>20</td>
+				</tr>
+			</table>
+		</div>
+	</mat-card>
+
+	<mat-card class="reviews-and-ratings margin-top-4">
+		<h1>Ratings & Reviews</h1>
+		<div class="columns">
+			<div class="ratings">
+
+			</div>
+			<div class="reviews">
+
+			</div>
+		</div>
+	</mat-card>
+</div>
+

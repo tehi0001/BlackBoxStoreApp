@@ -11,22 +11,24 @@ import { NewArrivalsComponent } from './new-arrivals/new-arrivals.component';
 import { FeaturedProductComponent } from './featured-product/featured-product.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
 	declarations: [
 		AppComponent,
-  HomeComponent,
-  PromotionsComponent,
-  NewArrivalsComponent,
-  FeaturedProductComponent,
-  ProductsComponent,
-  ProductDetailsComponent
+		HomeComponent,
+		PromotionsComponent,
+		NewArrivalsComponent,
+		FeaturedProductComponent,
+		ProductsComponent,
+		ProductDetailsComponent
 	],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
 		BrowserAnimationsModule,
-		MaterialModule
+		MaterialModule,
+		ReactiveFormsModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]
