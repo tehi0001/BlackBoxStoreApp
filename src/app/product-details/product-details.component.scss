@@ -103,5 +103,82 @@
 
 	.reviews-and-ratings {
 		padding: 3em;
+
+		.columns {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 7em;
+
+			.ratings {
+				font-size: 17px;
+				.average-rating {
+					display: flex;
+					align-items: center;
+					mat-icon {
+						color: $primary;
+						font-size: 40px;
+						margin-right: 0.5em;
+					}
+
+					h1 {
+						padding-top: 1.4em;
+						font-size: 27px;
+						margin-left: 0.7em;
+					}
+				}
+
+				.ratings-chart {
+					margin-top: 3em;
+
+					.rating-bar {
+						display: flex;
+						align-items: center;
+						margin-bottom: 1.5em;
+						font-size: 16px;
+
+						.bar {
+							background: lightgray;
+							flex: 1 1 auto;
+							margin: 0 1em;
+
+							.bar-val {
+								height: 36px;
+								background: $primary;
+							}
+						}
+					}
+				}
+			}
+
+			.reviews {
+
+				.review {
+					font-size: 17px;
+					padding: 2em 0;
+					border-bottom: 1px solid lightgray;
+
+					&:first-child {
+						padding-top: 0;
+					}
+
+					.review-header {
+						display: flex;
+						justify-content: space-between;
+						align-items: center;
+
+						.name {
+							margin: 0;
+						}
+					}
+
+					.rating {
+
+						mat-icon {
+							color: $primary;
+						}
+					}
+				}
+			}
+		}
 	}
 }
