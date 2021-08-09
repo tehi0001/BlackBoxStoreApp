@@ -1,0 +1,13 @@
+.login-container {
+	min-height: 600px;
+	padding: 2em;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	.login-box {
+		width: 400px;
+		font-size: 16px;
+	}
+}
