@@ -107,7 +107,7 @@ mat-sidenav-container {
 
 	.categories-sidenav {
 		width: 350px;
-		padding: 3em 1.5em 1.5em;
+		padding: 0 1.5em 1.5em;
 
 		a {
 			display: block;
@@ -127,6 +127,10 @@ mat-sidenav-container {
 
 	.cart-sidenav {
 		min-width: 300px;
+	}
+
+	.route-content {
+		padding-bottom: 6em;
 	}
 }
 
