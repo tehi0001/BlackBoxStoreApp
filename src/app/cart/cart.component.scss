@@ -1,0 +1,41 @@
+.cart-container {
+	padding: 1em;
+	box-sizing: border-box;
+	font-size: 15px;
+
+	.item {
+		display: flex;
+		border-top: 1px solid lightgray;
+		border-bottom: 1px solid lightgray;
+		padding: 1em 0;
+		.item-image {
+			margin-right: 1em;
+
+			img {
+				width: 70px;
+			}
+		}
+
+		.item-info {
+			flex: 1 1 auto;
+
+			.quantity {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+
+				mat-icon {
+					font-size: 21px;
+				}
+			}
+		}
+	}
+
+	.order-total {
+		font-weight: 500;
+		font-size: 17px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+}

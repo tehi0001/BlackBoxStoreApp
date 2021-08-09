@@ -12,6 +12,7 @@ import { FeaturedProductComponent } from './featured-product/featured-product.co
 import { ProductsComponent } from './products/products.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
 	declarations: [
@@ -21,7 +22,8 @@ import {ReactiveFormsModule} from "@angular/forms";
 		NewArrivalsComponent,
 		FeaturedProductComponent,
 		ProductsComponent,
-		ProductDetailsComponent
+		ProductDetailsComponent,
+  CartComponent
 	],
 	imports: [
 		BrowserModule,

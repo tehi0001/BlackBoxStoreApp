@@ -1,0 +1,31 @@
+<div class="cart-container">
+	<h3 style="margin-bottom: 2em">YOUR CART</h3>
+	<div class="item" *ngFor="let i of [1,2,3,4,5]">
+		<div class="item-image">
+			<img src="assets/dummies/product.png">
+		</div>
+		<div class="item-info">
+			<div>This is the item name</div>
+			<div class="quantity margin-top-1">
+				<div>1 Item</div>
+				<div class="quantity-controls">
+					<mat-icon>add_circle_outline</mat-icon>
+					<mat-icon>remove_circle_outline</mat-icon>
+				</div>
+			</div>
+			<div class="price align-right margin-top-1">
+				R220.89
+			</div>
+		</div>
+	</div>
+
+	<div class="margin-top-1 order-total">
+		<div>Order Total</div>
+		<div>R2,478.89</div>
+	</div>
+
+	<div class="margin-top-2">
+		<button mat-raised-button color="primary" class="full-width">CHECKOUT</button>
+	</div>
+
+</div>

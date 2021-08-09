@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'storeapp';
-  mainSideNavOpened: boolean = false;
+  categoriesSideNavOpened: boolean = false;
+  cartSideNavOpened: boolean = false;
 }
