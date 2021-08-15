@@ -15,6 +15,10 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { CartComponent } from './cart/cart.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import {ProductService} from "./services/product.service";
+import {CartService} from "./services/cart.service";
+import {ApiService} from "./services/api.service";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
 	declarations: [
@@ -25,18 +29,19 @@ import { RegisterComponent } from './register/register.component';
 		FeaturedProductComponent,
 		ProductsComponent,
 		ProductDetailsComponent,
-  CartComponent,
-  LoginComponent,
-  RegisterComponent
+		CartComponent,
+		LoginComponent,
+		RegisterComponent
 	],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
 		BrowserAnimationsModule,
 		MaterialModule,
-		ReactiveFormsModule
+		ReactiveFormsModule,
+		HttpClientModule
 	],
-	providers: [],
+	providers: [ProductService, CartService, ApiService],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

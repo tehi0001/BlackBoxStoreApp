@@ -41,10 +41,16 @@
 
 
 <mat-sidenav-container class="example-container">
-	<mat-sidenav class="categories-sidenav" mode="over" [opened]="categoriesSideNavOpened">
-		<a routerLink="/products" *ngFor="let i of [1,2,3,4,5,6,7,8,9,0]">
-			Pencils & Diaries
-		</a>
+	<mat-sidenav #categoriesNav class="categories-sidenav" mode="over" [opened]="categoriesSideNavOpened">
+		<div class="margin-top-3" *ngIf="loadingProductCategories">
+			<mat-spinner diameter="30" class="loader"></mat-spinner>
+		</div>
+		<div *ngIf="!loadingProductCategories">
+			<a routerLink="/products" (click)="categoriesNav.close();">All Products</a>
+			<a routerLink="/products/{{category?.category_name}}" *ngFor="let category of productCategories" (click)="categoriesNav.close()">
+				{{category?.category_name}}
+			</a>
+		</div>
 	</mat-sidenav>
 	<mat-sidenav class="cart-sidenav" mode="over" position="end" [opened]="cartSideNavOpened">
 		<app-cart></app-cart>

@@ -1,5 +1,13 @@
+@import "src/theme";
+
 .products-container {
 	padding: 2em;
+
+	.no-results {
+		text-align: center;
+		margin-top: 5em;
+		font-size: 17px;
+	}
 
 	.product-list {
 		display: grid;
@@ -8,6 +16,37 @@
 
 		.product {
 			padding: 2em;
+			position: relative;
+
+			.product-img {
+
+				img {
+					width: 155px;
+					height: 190px;
+				}
+			}
+
+			.product-price {
+				font-size: 16px;
+				font-weight: bold;
+			}
+
+			.discount-badge {
+				position: absolute;
+				top: 1em;
+				right: 1em;
+				width: 55px;
+				height: 55px;
+				background: $primary;
+				color: #fff;
+				padding: 1em;
+				font-size: 15px;
+				border-radius: 50%;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+			}
 		}
 	}
 }

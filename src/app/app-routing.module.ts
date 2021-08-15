@@ -21,7 +21,12 @@ const routes: Routes = [
 		component: ProductsComponent
 	},
 	{
-		path: "products/:id",
+		path: "products/:category",
+		component: ProductsComponent,
+		data: {filterByCategory: true}
+	},
+	{
+		path: "view-product/:id",
 		component: ProductDetailsComponent
 	},
 	{
@@ -35,7 +40,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-	imports: [RouterModule.forRoot(routes)],
+	imports: [RouterModule.forRoot(routes, {
+		onSameUrlNavigation: "reload"
+	})],
 	exports: [RouterModule]
 })
 export class AppRoutingModule { }

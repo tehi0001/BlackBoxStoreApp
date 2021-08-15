@@ -11,7 +11,11 @@ import {MatCardModule} from '@angular/material/card';
 import {MatSelectModule} from '@angular/material/select';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
 	declarations: [],
@@ -27,7 +31,12 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 		MatCardModule,
 		MatSelectModule,
 		MatMenuModule,
-		MatCheckboxModule
+		MatCheckboxModule,
+		MatTableModule,
+		MatPaginatorModule,
+		MatProgressSpinnerModule,
+		MatSnackBarModule,
+		MatDialogModule
 	],
 	exports: [
 		MatToolbarModule,
@@ -40,7 +49,12 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 		MatCardModule,
 		MatSelectModule,
 		MatMenuModule,
-		MatCheckboxModule
+		MatCheckboxModule,
+		MatTableModule,
+		MatPaginatorModule,
+		MatProgressSpinnerModule,
+		MatSnackBarModule,
+		MatDialogModule
 	]
 })
 export class MaterialModule {}

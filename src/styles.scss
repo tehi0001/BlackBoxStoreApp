@@ -64,3 +64,34 @@ a, a[routerLink] {
 .margin-top-4 {
 	margin-top: 4em;
 }
+
+
+// Dialogs
+
+.error-message {
+	color: #e79c9c !important;
+}
+
+.success-message {
+	color: #86c988 !important;
+}
+
+//Components
+
+.text-primary {
+	color: $primary;
+}
+
+.text-warn {
+	color: $warn;
+}
+
+button {
+	mat-spinner {
+		margin: .6em auto;
+	}
+}
+
+.loader {
+	margin: auto;
+}
