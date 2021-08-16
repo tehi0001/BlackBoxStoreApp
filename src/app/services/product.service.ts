@@ -29,4 +29,8 @@ export class ProductService {
 
 		return this.http.get(API_URL + endpoint);
 	}
+
+	getProduct(id: number): Observable<any> {
+		return this.http.get(API_URL + "/products/" + id);
+	}
 }

@@ -1,6 +1,9 @@
 <div class="products-container">
 	<div class="nav-crumbs">
-		<a routerLink="/">Home</a> > Products <span *ngIf="filterByCategory"> > {{filterByCategory}} </span>
+		<span class="crumb"><a routerLink="/">Home</a></span>
+		<span class="crumb" *ngIf="filterByCategory"><a routerLink="/products">Products</a></span>
+		<span class="crumb" *ngIf="!filterByCategory">Products</span>
+		<span class="crumb" *ngIf="filterByCategory">{{filterByCategory}} </span>
 	</div>
 	<div *ngIf="loadingProductsFromApi" class="margin-top-3">
 		<mat-spinner diameter="40" class="loader"></mat-spinner>
@@ -11,23 +14,28 @@
 		<div class="margin-top-2"><a routerLink="/products">Browse all our products</a> </div>
 	</div>
 
-	<div class="product-list margin-top-2" *ngIf="!loadingProductsFromApi && products.length > 0">
+	<div class="product-list margin-top-3" *ngIf="!loadingProductsFromApi && products.length > 0">
 		<mat-card class="product" *ngFor="let product of products">
 			<div class="product-img align-center">
-				<img src="{{product?.image}}" class="clickable" routerLink="/products/{{product?.id}}">
+				<img [src]="product?.image ? product?.image : 'assets/images/default_product.png'" class="clickable" routerLink="/view-product/{{product?.id}}">
 			</div>
-			<div class="product-info align-center margin-top-1">
-				{{product?.product_name}}
-			</div>
-			<div style="display: flex; justify-content: space-between; align-items: center" class="margin-top-1">
-				<div class="product-price">{{product?.price | currency:'ZAR':'symbol-narrow'}}</div>
-				<div class="product-in-stock">
-					{{product?.stock > 0 ? 'In Stock' : 'Out of stock'}}
+			<div class="product-details">
+				<div class="product-info align-center margin-top-1">
+					{{product?.product_name}}
 				</div>
-			</div>
-			<div class="discount-badge" *ngIf="product?.discount > 0">
-				<div>{{product?.discount | number}}%</div>
-				<div>OFF</div>
+				<div style="display: flex; justify-content: space-between; align-items: center" class="margin-top-1">
+					<div>
+						<div class="product-price" [ngClass]="{discounted: product?.discount > 0}">{{product?.price | currency:'ZAR':'symbol-narrow'}}</div>
+						<div class="product-price" *ngIf="product?.discount > 0">{{product?.price | discountedPrice:product?.discount | currency:'ZAR':'symbol-narrow'}}</div>
+					</div>
+					<div class="product-in-stock">
+						{{product?.stock > 0 ? 'In Stock' : 'Out of stock'}}
+					</div>
+				</div>
+				<div class="discount-badge" *ngIf="product?.discount > 0">
+					<div>{{product?.discount | number}}%</div>
+					<div>OFF</div>
+				</div>
 			</div>
 		</mat-card>
 	</div>

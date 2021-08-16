@@ -95,3 +95,23 @@ button {
 .loader {
 	margin: auto;
 }
+
+.nav-crumbs {
+	font-size: 15px;
+
+	.crumb {
+
+		&:after {
+			content: '>';
+			margin: 0 .5em;
+		}
+
+		&:last-child:after {
+			content: none;
+		}
+	}
+}
+
+.strike {
+	text-decoration: line-through;
+}
