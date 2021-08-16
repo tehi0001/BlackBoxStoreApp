@@ -1,23 +1,31 @@
 .new-arrivals {
-	display: flex;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+	gap: 1em;
 
 	.product {
 		margin-right: 2em;
 		padding: 2em;
-
-		&:last-child {
-			margin-right: 0;
-		}
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
 
 		.product-img {
 			height: 190px;
 
 			img {
 				max-height: 190px;
+				max-width: 150px;
 			}
 		}
 
-		.product-info {
+		.product-price {
+			font-weight: 500;
+
+			&.discounted {
+				font-weight: normal;
+				text-decoration: line-through;
+			}
 		}
 	}
 }

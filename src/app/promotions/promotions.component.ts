@@ -10,7 +10,7 @@ export class PromotionsComponent implements OnInit {
 
 	promotion: Promotion = {
 		image_url: "assets/dummies/promotion.png",
-		promotion_url: "/promotions"
+		promotion_url: "/products"
 	};
 
 	constructor() {}

@@ -40,23 +40,6 @@
 					margin-top: .2em;
 				}
 			}
-
-			.discount-badge {
-				position: absolute;
-				top: 1em;
-				right: 1em;
-				width: 55px;
-				height: 55px;
-				background: $primary;
-				color: #fff;
-				padding: 1em;
-				font-size: 15px;
-				border-radius: 50%;
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-				align-items: center;
-			}
 		}
 	}
 }

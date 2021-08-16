@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ProductService} from "../services/product.service";
 import {ApiService} from "../services/api.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {CartService} from "../services/cart.service";
 
 @Component({
   selector: 'app-product-details',
@@ -16,18 +17,18 @@ export class ProductDetailsComponent implements OnInit {
 
 	largeProductImageIndex: number = 0;
 
-	lowestShippingCost: number = 0;
-
 	productProperties: any = {
 		dimensions: [],
 		others: []
 	}
 
+	selectedProductProperties: { name: string, value: string}[] = [];
+
 	constructor(
 		private productService: ProductService,
 		private apiService: ApiService,
 		private route: ActivatedRoute,
-		private router: Router
+		private cartService: CartService
 	) {}
 
 	ngOnInit(): void {
@@ -89,6 +90,27 @@ export class ProductDetailsComponent implements OnInit {
 		})
 
 		this.productProperties.others = groupedProps;
+
+		// @ts-ignore
+		this.productProperties.others.forEach(prop => {
+			this.selectedProductProperties.push({
+				name: prop.property_name,
+				value: prop.values[0]
+			})
+		})
+
+		console.log(this.selectedProductProperties);
 	}
 
+	updateProductProperty(propertyName: string, control: any) {
+		this.selectedProductProperties.forEach((prop, index) => {
+			if(propertyName == prop.name) {
+				prop.value = control?.value;
+			}
+		});
+	}
+
+	addToCart(): void {
+		this.cartService.addItem(this.product.id, this.product.product_name, this.selectedProductProperties);
+	}
 }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Router} from "@angular/router";
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {API_URL} from "../config";
+import {API_URL, NEW_ARRIVALS_LIMIT} from "../config";
 
 @Injectable({
   providedIn: 'root'
@@ -33,4 +33,9 @@ export class ProductService {
 	getProduct(id: number): Observable<any> {
 		return this.http.get(API_URL + "/products/" + id);
 	}
+
+	getNewArrivals(): Observable<any> {
+		return this.http.get(API_URL + "/new-arrivals/" + NEW_ARRIVALS_LIMIT);
+	}
+
 }

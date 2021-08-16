@@ -39,7 +39,7 @@
 			<div class="margin-top-2">
 				<mat-form-field appearance="fill" *ngFor="let property of productProperties.others">
 					<mat-label>{{property?.property_name}}</mat-label>
-					<mat-select [value]="property?.values[0]">
+					<mat-select #prop [value]="property?.values[0]" (selectionChange)="updateProductProperty(property?.property_name, $event)">
 						<mat-option *ngFor="let value of property?.values" [value]="value">{{value}}</mat-option>
 					</mat-select>
 				</mat-form-field>
@@ -52,7 +52,7 @@
 				</mat-form-field>
 			</div>
 			<div class="margin-top-2">
-				<button class="add-to-cart-btn" mat-raised-button color="primary">ADD TO CART</button>
+				<button class="add-to-cart-btn" mat-raised-button color="primary" (click)="addToCart()">ADD TO CART</button>
 			</div>
 		</div>
 	</div>

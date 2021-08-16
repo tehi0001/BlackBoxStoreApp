@@ -1,16 +1,30 @@
 <div style="padding: 3em">
 	<h2>New Arrivals</h2>
-	<div class="new-arrivals">
-		<mat-card class="product" *ngFor="let i of [1,2,3,4,5,6]">
+
+	<div *ngIf="loadingProductsFromApi" style="margin-bottom: 3em">
+		<mat-spinner diameter="30"></mat-spinner>
+	</div>
+
+	<div class="new-arrivals" *ngIf="!loadingProductsFromApi">
+		<mat-card class="product" *ngFor="let product of newArrivals">
+			<div class="discount-badge" *ngIf="product?.discount > 0">
+				<div>{{product?.discount | number}}%</div>
+				<div>OFF</div>
+			</div>
 			<div class="product-img align-center">
-				<img src="assets/dummies/product.png" class="clickable" routerLink="/products">
+				<img class="clickable" [src]="product?.image ? product?.image : 'assets/images/default_product.png'" routerLink="/view-product/{{product?.id}}">
 			</div>
-			<div class="product-info align-center margin-top-1">
-				This is a space for the product info
-			</div>
-			<div style="display: flex; justify-content: space-between; align-items: center" class="margin-top-1">
-				<div class="product-price">R209.99</div>
-				<button mat-flat-button color="primary"><mat-icon>add_shopping_cart</mat-icon></button>
+			<div>
+				<div class="product-info align-center margin-top-1">
+					{{product?.product_name}}
+				</div>
+				<div style="display: flex; justify-content: space-between; align-items: center" class="margin-top-1-half">
+					<div>
+						<div class="product-price" [ngClass]="{discounted: product?.discount > 0}">{{product?.price | currency:'ZAR':'symbol-narrow'}}</div>
+						<div class="product-price" *ngIf="product?.discount > 0">{{product?.price | discountedPrice:product?.discount | currency:'ZAR':'symbol-narrow'}}</div>
+					</div>
+					<button mat-flat-button color="primary" (click)="cartService.addItem(product?.id, product?.product_name)"><mat-icon>add_shopping_cart</mat-icon></button>
+				</div>
 			</div>
 		</mat-card>
 	</div>
