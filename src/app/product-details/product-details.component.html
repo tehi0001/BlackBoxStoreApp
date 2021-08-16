@@ -48,11 +48,11 @@
 			<div class="margin-top-1">
 				<mat-form-field appearance="fill">
 					<mat-label>Quantity</mat-label>
-					<input type="number" matInput [value]="1">
+					<input type="number" matInput [value]="1" #quantity>
 				</mat-form-field>
 			</div>
 			<div class="margin-top-2">
-				<button class="add-to-cart-btn" mat-raised-button color="primary" (click)="addToCart()">ADD TO CART</button>
+				<button class="add-to-cart-btn" mat-raised-button color="primary" (click)="addToCart(quantity.value)">ADD TO CART</button>
 			</div>
 		</div>
 	</div>

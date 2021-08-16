@@ -122,11 +122,16 @@ mat-sidenav-container {
 				border-bottom-color: $primary;
 				cursor: pointer;
 			}
+			&:focus {
+				outline: none;
+			}
 		}
 	}
 
 	.cart-sidenav {
-		min-width: 300px;
+		width: 450px;
+		padding-bottom: 3em;
+		background: #fff;
 	}
 
 	.route-content {

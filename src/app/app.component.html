@@ -12,14 +12,14 @@
 		<button mat-icon-button routerLink="/login">
 			<mat-icon>person</mat-icon>
 		</button>
-		<button mat-icon-button (click)="cartSideNavOpened = !cartSideNavOpened">
-			<mat-icon matBadge="3" matBadgeColor="warn">shopping_cart</mat-icon>
+		<button mat-icon-button (click)="cartNav.toggle()">
+			<mat-icon [matBadge]="cartService.getItemCount() == 0 ? '' : cartService.getItemCount()" matBadgeColor="warn">shopping_cart</mat-icon>
 		</button>
 	</div>
 </div>
 <mat-toolbar class="main-toolbar">
 	<div>
-		<a class="main-menu-control clickable" (click)="categoriesSideNavOpened = !categoriesSideNavOpened">
+		<a class="main-menu-control clickable" (click)="categoriesNav.toggle()">
 			<mat-icon>menu</mat-icon>
 			<span style="font-size: 14px">All Categories</span>
 		</a>
@@ -40,8 +40,8 @@
 
 
 
-<mat-sidenav-container class="example-container">
-	<mat-sidenav #categoriesNav class="categories-sidenav" mode="over" [opened]="categoriesSideNavOpened">
+<mat-sidenav-container>
+	<mat-sidenav #categoriesNav class="categories-sidenav" mode="over" [opened]="false">
 		<div class="margin-top-3" *ngIf="loadingProductCategories">
 			<mat-spinner diameter="30" class="loader"></mat-spinner>
 		</div>
@@ -52,13 +52,15 @@
 			</a>
 		</div>
 	</mat-sidenav>
-	<mat-sidenav class="cart-sidenav" mode="over" position="end" [opened]="cartSideNavOpened">
-		<app-cart></app-cart>
+	<mat-sidenav #cartNav class="cart-sidenav" mode="over" position="end" [opened]="false" (openedStart)="cart.getItemsData()">
+		<app-cart #cart (onNav)="cartNav.close()"></app-cart>
 	</mat-sidenav>
 
-	<div class="route-content">
-		<router-outlet></router-outlet>
-	</div>
+	<mat-sidenav-content>
+		<div class="route-content">
+			<router-outlet></router-outlet>
+		</div>
+	</mat-sidenav-content>
 </mat-sidenav-container>
 
 

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {ProductService} from "./services/product.service";
 import {ApiService} from "./services/api.service";
+import {CartService} from "./services/cart.service";
 
 @Component({
   selector: 'app-root',
@@ -9,8 +10,6 @@ import {ApiService} from "./services/api.service";
 })
 export class AppComponent {
 	title = 'storeapp';
-	categoriesSideNavOpened: boolean = false;
-	cartSideNavOpened: boolean = false;
 
 	productCategories: any;
 
@@ -18,7 +17,8 @@ export class AppComponent {
 
 	constructor(
 		private productService: ProductService,
-		private apiService: ApiService
+		private apiService: ApiService,
+		public cartService: CartService
 	) {
 		this.getProductCategories();
 	}

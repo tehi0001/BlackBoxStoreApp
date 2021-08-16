@@ -1,31 +1,38 @@
 <div class="cart-container">
-	<h3 style="margin-bottom: 2em">YOUR CART</h3>
-	<div class="item" *ngFor="let i of [1,2,3,4,5]">
-		<div class="item-image">
-			<img src="assets/dummies/product.png">
-		</div>
-		<div class="item-info">
-			<div>This is the item name</div>
-			<div class="quantity margin-top-1">
-				<div>1 Item</div>
-				<div class="quantity-controls">
-					<mat-icon>add_circle_outline</mat-icon>
-					<mat-icon>remove_circle_outline</mat-icon>
+	<h3 style="margin-bottom: 2em; font-weight: 400">YOUR CART</h3>
+	<div class="align-center" *ngIf="cartService.getItemCount() == 0">
+		No items in your cart
+	</div>
+	<div class="margin-top-3" *ngIf="cartService.getItemCount() > 0 && loadingCartDataFromApi">
+		<mat-spinner diameter="30" class="loader"></mat-spinner>
+	</div>
+	<div *ngIf="!loadingCartDataFromApi && cartService.getItemCount() > 0">
+		<div class="item" *ngFor="let item of cart">
+			<div class="item-image">
+				<img [src]="item?.image" class="clickable" routerLink="/view-product/{{item?.id}}" (click)="onNav.emit()">
+			</div>
+			<div class="item-info">
+				<div>{{item?.name}}</div>
+				<div class="quantity margin-top-1">
+					<div>{{item?.quantity}} Item</div>
+					<div class="quantity-controls">
+						<mat-icon>add_circle_outline</mat-icon>
+						<mat-icon>remove_circle_outline</mat-icon>
+					</div>
+				</div>
+				<div class="price align-right margin-top-1">
+					{{item?.price | currency:'ZAR':'symbol-narrow'}}
 				</div>
 			</div>
-			<div class="price align-right margin-top-1">
-				R220.89
-			</div>
+		</div>
+
+		<div class="margin-top-1 order-total">
+			<div>Order Total</div>
+			<div>R2,478.89</div>
+		</div>
+
+		<div class="margin-top-2">
+			<button mat-raised-button color="primary" class="full-width">CHECKOUT</button>
 		</div>
 	</div>
-
-	<div class="margin-top-1 order-total">
-		<div>Order Total</div>
-		<div>R2,478.89</div>
-	</div>
-
-	<div class="margin-top-2">
-		<button mat-raised-button color="primary" class="full-width">CHECKOUT</button>
-	</div>
-
 </div>

@@ -98,8 +98,6 @@ export class ProductDetailsComponent implements OnInit {
 				value: prop.values[0]
 			})
 		})
-
-		console.log(this.selectedProductProperties);
 	}
 
 	updateProductProperty(propertyName: string, control: any) {
@@ -110,7 +108,7 @@ export class ProductDetailsComponent implements OnInit {
 		});
 	}
 
-	addToCart(): void {
-		this.cartService.addItem(this.product.id, this.product.product_name, this.selectedProductProperties);
+	addToCart(quantity: string): void {
+		this.cartService.addItem(this.product.id, this.product.product_name, parseInt(quantity), this.selectedProductProperties);
 	}
 }
