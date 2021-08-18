@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {PROVINCES} from "../config";
+import {EMAIL_VALIDATION_REGEX, PROVINCES} from "../config";
 import {CartService} from "../services/cart.service";
 import {ApiService} from "../services/api.service";
 import {findIndex} from "lodash";
@@ -52,7 +52,7 @@ export class CheckoutComponent implements OnInit {
 			postcode: new FormControl('', [Validators.required]),
 			province: new FormControl('', [Validators.required]),
 			phone: new FormControl('', [Validators.required]),
-			email: new FormControl('', [Validators.required]),
+			email: new FormControl('', [Validators.required, Validators.pattern(EMAIL_VALIDATION_REGEX)]),
 			shippingCategory: new FormControl('')
 		})
 	}

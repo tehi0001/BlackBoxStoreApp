@@ -1,29 +1,15 @@
 .container {
 	min-height: 50vh;
 	display: flex;
-	align-items: center;
-	justify-content: center;
 	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 	text-align: center;
 
 	mat-icon {
 		font-size: 80px;
 		margin-right: .6em;
 		margin-bottom: 1em;
-
-		&.success {
-			color: green;
-		}
-		&.fail {
-			color: red;
-		}
-	}
-
-	h2 {
-		font-weight: 400;
-	}
-
-	a {
-		font-size: 17px;
+		color: green;
 	}
 }

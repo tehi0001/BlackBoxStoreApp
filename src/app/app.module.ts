@@ -26,6 +26,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import {SessionService} from "./services/session.service";
 import { PaymentComponent } from './payment/payment.component';
 import { CheckoutCompleteComponent } from './checkout-complete/checkout-complete.component';
+import {UserService} from "./services/user.service";
+import { RegistrationDoneComponent } from './registration-done/registration-done.component';
 
 @NgModule({
 	declarations: [
@@ -43,7 +45,8 @@ import { CheckoutCompleteComponent } from './checkout-complete/checkout-complete
 		Nl2brPipe,
 		CheckoutComponent,
   PaymentComponent,
-  CheckoutCompleteComponent
+  CheckoutCompleteComponent,
+  RegistrationDoneComponent
 	],
 	imports: [
 		BrowserModule,
@@ -53,7 +56,7 @@ import { CheckoutCompleteComponent } from './checkout-complete/checkout-complete
 		ReactiveFormsModule,
 		HttpClientModule
 	],
-	providers: [ProductService, CartService, ApiService, DialogService, SessionService],
+	providers: [ProductService, CartService, ApiService, DialogService, SessionService, UserService],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

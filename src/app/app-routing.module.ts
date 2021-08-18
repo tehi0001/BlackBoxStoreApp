@@ -8,6 +8,7 @@ import {RegisterComponent} from "./register/register.component";
 import {CheckoutComponent} from "./checkout/checkout.component";
 import {PaymentComponent} from "./payment/payment.component";
 import {CheckoutCompleteComponent} from "./checkout-complete/checkout-complete.component";
+import {RegistrationDoneComponent} from "./registration-done/registration-done.component";
 
 const routes: Routes = [
 	{
@@ -57,6 +58,10 @@ const routes: Routes = [
 	{
 		path: "register",
 		component: RegisterComponent
+	},
+	{
+		path: "register/done",
+		component: RegistrationDoneComponent
 	}
 ];
 
