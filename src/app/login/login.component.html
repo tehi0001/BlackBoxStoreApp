@@ -1,29 +1,35 @@
 <div class="login-container">
 	<div class="login-box">
 		<h1>Sign In</h1>
-		<mat-form-field appearance="outline" class="full-width">
-			<mat-label>Username/Email</mat-label>
-			<input type="text" matInput>
-		</mat-form-field>
-		<mat-form-field appearance="outline" class="full-width">
-			<mat-label>Password</mat-label>
-			<input matInput [type]="hidePasswordFieldText ? 'password' : 'text'">
-			<button mat-icon-button matSuffix (click)="hidePasswordFieldText = !hidePasswordFieldText">
-				<mat-icon>{{hidePasswordFieldText ? 'visibility_off' : 'visibility'}}</mat-icon>
-			</button>
-		</mat-form-field>
-		<div style="display: flex; justify-content: space-between; align-items: center">
-			<mat-checkbox color="primary">Remember me on this device</mat-checkbox>
-			<a href="#">Need Help?</a>
-		</div>
-		<div class="margin-top-2">
-			<button mat-raised-button color="primary" class="full-width">Sign In</button>
-		</div>
+
+		<form [formGroup]="authForm" (submit)="login()">
+			<mat-form-field appearance="outline" class="full-width">
+				<mat-label>Email</mat-label>
+				<input type="text" matInput formControlName="email">
+			</mat-form-field>
+			<mat-form-field appearance="outline" class="full-width">
+				<mat-label>Password</mat-label>
+				<input matInput [type]="hidePasswordFieldText ? 'password' : 'text'" formControlName="password">
+				<button type="button" mat-icon-button matSuffix (click)="hidePasswordFieldText = !hidePasswordFieldText">
+					<mat-icon>{{hidePasswordFieldText ? 'visibility_off' : 'visibility'}}</mat-icon>
+				</button>
+			</mat-form-field>
+			<div style="display: flex; justify-content: space-between; align-items: center">
+				<mat-checkbox color="primary" [checked]="rememberUser">Remember me on this device</mat-checkbox>
+				<a href="#">Need Help?</a>
+			</div>
+			<div class="margin-top-2">
+				<button type="submit" mat-raised-button color="primary" class="full-width" [disabled]="authForm.invalid || authFormBusy">
+					<span *ngIf="!authFormBusy">Sign In</span>
+					<mat-spinner diameter="20" *ngIf="authFormBusy"></mat-spinner>
+				</button>
+			</div>
+		</form>
 
 		<div class="margin-top-2 align-center">
 			<a routerLink="/register">Dont have an account? Register now</a>
 		</div>
-		<div class="margin-top-2 align-center" style="font-size: 18px">
+		<div class="margin-top-2 align-center" style="font-size: 18px" *ngIf="authForCheckout">
 			<a routerLink="/checkout" [state]="{noAuth: true}">Continue as Guest</a>
 		</div>
 	</div>

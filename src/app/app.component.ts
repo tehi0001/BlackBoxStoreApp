@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {ProductService} from "./services/product.service";
 import {ApiService} from "./services/api.service";
 import {CartService} from "./services/cart.service";
+import {UserService} from "./services/user.service";
 
 @Component({
   selector: 'app-root',
@@ -18,9 +19,14 @@ export class AppComponent {
 	constructor(
 		private productService: ProductService,
 		private apiService: ApiService,
-		public cartService: CartService
+		public cartService: CartService,
+		public userService: UserService
 	) {
 		this.getProductCategories();
+
+		if(userService.activeSession !== null) {
+			userService.restoreSession();
+		}
 	}
 
 	getProductCategories(): void {

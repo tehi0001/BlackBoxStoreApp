@@ -9,9 +9,32 @@
 		</div>
 	</div>
 	<div class="top-nav-icons">
-		<button mat-icon-button routerLink="/login">
+		<div class="session-user clickable" *ngIf="userService.loggedIn" [matMenuTriggerFor]="userMenu">
+			JB
+		</div>
+		<button mat-icon-button routerLink="/login" style="margin-right: 1em" *ngIf="!userService.loggedIn">
 			<mat-icon>person</mat-icon>
 		</button>
+
+		<mat-menu #userMenu>
+			<button mat-menu-item>
+				<mat-icon>manage_accounts</mat-icon>
+				<span>My Account</span>
+			</button>
+			<button mat-menu-item>
+				<mat-icon>local_shipping</mat-icon>
+				<span>My Addresses</span>
+			</button>
+			<button mat-menu-item>
+				<mat-icon>receipt</mat-icon>
+				<span>My Orders</span>
+			</button>
+			<button mat-menu-item routerLink="logout">
+				<mat-icon>logout</mat-icon>
+				<span>Sign Out</span>
+			</button>
+		</mat-menu>
+
 		<button mat-icon-button (click)="cartNav.toggle()">
 			<mat-icon [matBadge]="cartService.getItemCount() == 0 ? '' : cartService.getItemCount()" matBadgeColor="warn">shopping_cart</mat-icon>
 		</button>

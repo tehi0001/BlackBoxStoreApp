@@ -11,7 +11,7 @@ import { NewArrivalsComponent } from './new-arrivals/new-arrivals.component';
 import { FeaturedProductComponent } from './featured-product/featured-product.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { CartComponent } from './cart/cart.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -28,6 +28,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { CheckoutCompleteComponent } from './checkout-complete/checkout-complete.component';
 import {UserService} from "./services/user.service";
 import { RegistrationDoneComponent } from './registration-done/registration-done.component';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
 	declarations: [
@@ -46,7 +47,8 @@ import { RegistrationDoneComponent } from './registration-done/registration-done
 		CheckoutComponent,
   PaymentComponent,
   CheckoutCompleteComponent,
-  RegistrationDoneComponent
+  RegistrationDoneComponent,
+  LogoutComponent
 	],
 	imports: [
 		BrowserModule,
@@ -54,7 +56,8 @@ import { RegistrationDoneComponent } from './registration-done/registration-done
 		BrowserAnimationsModule,
 		MaterialModule,
 		ReactiveFormsModule,
-		HttpClientModule
+		HttpClientModule,
+		FormsModule
 	],
 	providers: [ProductService, CartService, ApiService, DialogService, SessionService, UserService],
 	bootstrap: [AppComponent]

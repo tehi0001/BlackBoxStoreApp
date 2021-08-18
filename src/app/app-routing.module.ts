@@ -9,6 +9,7 @@ import {CheckoutComponent} from "./checkout/checkout.component";
 import {PaymentComponent} from "./payment/payment.component";
 import {CheckoutCompleteComponent} from "./checkout-complete/checkout-complete.component";
 import {RegistrationDoneComponent} from "./registration-done/registration-done.component";
+import {LogoutComponent} from "./logout/logout.component";
 
 const routes: Routes = [
 	{
@@ -54,6 +55,10 @@ const routes: Routes = [
 	{
 		path: "login",
 		component: LoginComponent
+	},
+	{
+		path: "logout",
+		component: LogoutComponent
 	},
 	{
 		path: "register",

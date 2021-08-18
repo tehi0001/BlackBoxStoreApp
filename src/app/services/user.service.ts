@@ -8,11 +8,65 @@ import {API_URL} from "../config";
 })
 export class UserService {
 
+	private isLoggedIn: boolean = false;
+
+	// @ts-ignore
+	sessionUser: {
+		firstname: string,
+		lastname: string
+	} | null;
+
+	// @ts-ignore
+	token: string | null;
+
 	constructor(
 		private http: HttpClient
 	) { }
 
+	login(token: string, firstname: string, lastname: string) {
+		this.token = token;
+		this.isLoggedIn = true;
+
+		this.sessionUser = {
+			firstname: firstname,
+			lastname: lastname
+		}
+
+		sessionStorage.setItem("sessionToken", token);
+		sessionStorage.setItem("sessionUser", JSON.stringify(this.sessionUser));
+	}
+
+	logout() {
+		sessionStorage.clear();
+		this.sessionUser = null;
+		this.isLoggedIn = false;
+		this.token = null;
+	}
+
+	get loggedIn(): boolean {
+		return this.isLoggedIn
+	}
+
+	get activeSession(): string | null {
+		return sessionStorage.getItem("sessionToken");
+	}
+
+	restoreSession() {
+		let token = this.activeSession
+
+		if(token !== null) {
+			// @ts-ignore
+			this.sessionUser = JSON.parse(sessionStorage.getItem("sessionUser"));
+			this.token = token;
+			this.isLoggedIn = true;
+		}
+	}
+
 	register(user: any): Observable<any> {
 		return this.http.post(API_URL + "/register", user);
+	}
+
+	auth(user: any): Observable<any> {
+		return this.http.post(API_URL + "/auth", user);
 	}
 }

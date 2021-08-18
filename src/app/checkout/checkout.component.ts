@@ -69,7 +69,9 @@ export class CheckoutComponent implements OnInit {
 				this.activeForm = "billing";
 			}
 			else {
-				this.router.navigateByUrl("/login");
+				this.router.navigate(["/login"], {
+					state: {forCheckout: true}
+				});
 			}
 
 			this.checkoutForm.valueChanges.subscribe(() => {
