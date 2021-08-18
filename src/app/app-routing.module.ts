@@ -31,6 +31,10 @@ const routes: Routes = [
 		data: {filterByCategory: true}
 	},
 	{
+		path: "products/search/:query",
+		component: ProductsComponent,
+	},
+	{
 		path: "view-product/:id",
 		component: ProductDetailsComponent
 	},

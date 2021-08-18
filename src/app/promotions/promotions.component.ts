@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Promotion} from "../models/promotion";
 
 @Component({
@@ -8,6 +8,8 @@ import {Promotion} from "../models/promotion";
 })
 export class PromotionsComponent implements OnInit {
 
+	@Output() loaded: EventEmitter<any> = new EventEmitter<any>();
+
 	promotion: Promotion = {
 		image_url: "assets/dummies/promotion.png",
 		promotion_url: "/products"
@@ -16,6 +18,7 @@ export class PromotionsComponent implements OnInit {
 	constructor() {}
 
 	ngOnInit(): void {
+		this.loaded.emit();
 	}
 
 }

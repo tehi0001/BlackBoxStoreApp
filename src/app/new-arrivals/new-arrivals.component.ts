@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ProductService} from "../services/product.service";
 import {ApiService} from "../services/api.service";
 import {CartService} from "../services/cart.service";
@@ -10,7 +10,7 @@ import {CartService} from "../services/cart.service";
 })
 export class NewArrivalsComponent implements OnInit {
 
-	loadingProductsFromApi: boolean = true;
+	@Output() loaded: EventEmitter<any> = new EventEmitter<any>();
 
 	newArrivals: any;
 
@@ -26,17 +26,15 @@ export class NewArrivalsComponent implements OnInit {
 	}
 
 	getProducts(): void {
-		this.loadingProductsFromApi = true;
-
 		this.productService.getNewArrivals().subscribe(response => {
 			if(response.success) {
 				this.newArrivals = response.data;
-
-				this.loadingProductsFromApi = false;
 			}
+			this.loaded.emit();
 
 		}, error => {
 			this.apiService.handleHttpErrors(error);
+			this.loaded.emit()
 		})
 	}
 

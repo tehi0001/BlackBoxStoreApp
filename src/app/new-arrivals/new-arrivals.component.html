@@ -1,11 +1,7 @@
 <div style="padding: 3em">
 	<h2>New Arrivals</h2>
 
-	<div *ngIf="loadingProductsFromApi" style="margin-bottom: 3em">
-		<mat-spinner diameter="30"></mat-spinner>
-	</div>
-
-	<div class="new-arrivals" *ngIf="!loadingProductsFromApi">
+	<div class="new-arrivals">
 		<mat-card class="product" *ngFor="let product of newArrivals">
 			<div class="discount-badge" *ngIf="product?.discount > 0">
 				<div>{{product?.discount | number}}%</div>

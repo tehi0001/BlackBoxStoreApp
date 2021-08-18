@@ -1,3 +1,8 @@
-<app-promotions></app-promotions>
-<app-new-arrivals></app-new-arrivals>
-<app-featured-product></app-featured-product>
+<div class="loading" *ngIf="!promotionsLoaded || !newArrivalsLoaded || !featuredProductLoaded">
+	<mat-spinner diameter="40" class="loader"></mat-spinner>
+</div>
+<div [hidden]="!promotionsLoaded || !newArrivalsLoaded || !featuredProductLoaded">
+	<app-promotions (loaded)="promotionsLoaded = true"></app-promotions>
+	<app-new-arrivals (loaded)="newArrivalsLoaded = true"></app-new-arrivals>
+	<app-featured-product (loaded)="featuredProductLoaded = true"></app-featured-product>
+</div>

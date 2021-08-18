@@ -1,8 +1,10 @@
 <div class="products-container">
 	<div class="nav-crumbs">
 		<span class="crumb"><a routerLink="/">Home</a></span>
-		<span class="crumb" *ngIf="filterByCategory"><a routerLink="/products">Products</a></span>
-		<span class="crumb" *ngIf="!filterByCategory">Products</span>
+		<span class="crumb" *ngIf="filterByCategory || searchQuery"><a routerLink="/products">Products</a></span>
+		<span class="crumb" *ngIf="!filterByCategory && !searchQuery">Products</span>
+		<span class="crumb" *ngIf="searchQuery">Search</span>
+		<span class="crumb" *ngIf="searchQuery">{{searchQuery}}</span>
 		<span class="crumb" *ngIf="filterByCategory">{{filterByCategory}} </span>
 	</div>
 	<div *ngIf="loadingProductsFromApi" class="margin-top-3">

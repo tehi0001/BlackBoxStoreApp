@@ -3,10 +3,12 @@
 		<a href="/"><img class="logo" src="assets/images/logo.png" routerLink="/"></a>
 	</div>
 	<div class="search-bar">
-		<div class="search-controls">
-			<input type="text" class="search-input" placeholder="Search">
-			<button class="search-btn">Search</button>
-		</div>
+		<form [formGroup]="searchForm" (submit)="search()">
+			<div class="search-controls">
+				<input type="text" class="search-input" placeholder="Search" formControlName="query">
+				<button type="submit" class="search-btn">Search</button>
+			</div>
+		</form>
 	</div>
 	<div class="top-nav-icons">
 		<div class="session-user clickable" *ngIf="userService.loggedIn" [matMenuTriggerFor]="userMenu">

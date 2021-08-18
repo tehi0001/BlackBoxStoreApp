@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+	promotionsLoaded: boolean = false;
 
-  ngOnInit(): void {
-  }
+	newArrivalsLoaded: boolean = false;
+
+	featuredProductLoaded: boolean = false;
+
+	constructor() { }
+
+	ngOnInit(): void {
+	}
 
 }

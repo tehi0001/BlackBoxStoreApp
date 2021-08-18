@@ -30,6 +30,12 @@ export class ProductService {
 		return this.http.get(API_URL + endpoint);
 	}
 
+	searchProducts(query: string): Observable<any> {
+		return this.http.post(API_URL + "/search-products", {
+			query: query
+		});
+	}
+
 	getProduct(id: number): Observable<any> {
 		return this.http.get(API_URL + "/products/" + id);
 	}

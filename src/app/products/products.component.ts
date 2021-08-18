@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ProductService} from "../services/product.service";
 import {ActivatedRoute} from "@angular/router";
 import {ApiService} from "../services/api.service";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-products',
@@ -16,10 +17,13 @@ export class ProductsComponent implements OnInit {
 
 	filterByCategory: any;
 
+	searchQuery: any;
+
 	constructor(
 		private productService: ProductService,
 		private route: ActivatedRoute,
-		private apiService: ApiService
+		private apiService: ApiService,
+		private location: Location
 	) { }
 
 	ngOnInit(): void {
@@ -28,6 +32,12 @@ export class ProductsComponent implements OnInit {
 				this.route.params.subscribe(param => {
 					this.getProducts(param.category);
 					this.filterByCategory = param.category
+				})
+			}
+			else if(this.location.path().includes("/products/search/")) {
+				this.route.params.subscribe(param => {
+					this.searchQuery = param.query;
+					this.searchProducts(this.searchQuery);
 				})
 			}
 			else {
@@ -40,6 +50,18 @@ export class ProductsComponent implements OnInit {
 		this.loadingProductsFromApi = true;
 
 		this.productService.getProducts(category).subscribe(response => {
+			if(response.success) {
+				this.products = response.data;
+				this.loadingProductsFromApi = false
+			}
+		}, error => {
+			this.apiService.handleHttpErrors(error);
+		})
+	}
+
+	searchProducts(query: string) {
+		this.loadingProductsFromApi = true;
+		this.productService.searchProducts(query).subscribe(response => {
 			if(response.success) {
 				this.products = response.data;
 				this.loadingProductsFromApi = false
