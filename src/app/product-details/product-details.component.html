@@ -36,7 +36,7 @@
 				<span>{{product?.shipping[0].cost == 0 ? 'FREE' : product?.shipping[0].cost | currency:'ZAR':'symbol-narrow'}} delivery nationwide</span>
 			</div>
 
-			<div class="margin-top-2">
+			<div class="margin-top-2" *ngIf="productProperties.others.length > 0">
 				<mat-form-field appearance="fill" *ngFor="let property of productProperties.others">
 					<mat-label>{{property?.property_name}}</mat-label>
 					<mat-select #prop [value]="property?.values[0]" (selectionChange)="updateProductProperty(property?.property_name, $event)">

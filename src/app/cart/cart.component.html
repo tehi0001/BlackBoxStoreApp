@@ -1,6 +1,6 @@
-<div class="cart-container">
-	<h3 style="margin-bottom: 2em; font-weight: 400">YOUR CART</h3>
-	<div class="align-center" *ngIf="cartService.getItemCount() == 0">
+<div class="cart-container" [ngClass]="{'checkout-mode': loadOnInit}">
+	<h1 class="cart-title">YOUR CART</h1>
+	<div class="align-center margin-top-3" *ngIf="cartService.getItemCount() == 0">
 		No items in your cart
 	</div>
 	<div class="margin-top-3" *ngIf="cartService.getItemCount() > 0 && loadingCartDataFromApi">
@@ -16,8 +16,12 @@
 				<div class="quantity margin-top-1">
 					<div>{{item?.quantity}} Item</div>
 					<div class="quantity-controls">
-						<mat-icon>add_circle_outline</mat-icon>
-						<mat-icon>remove_circle_outline</mat-icon>
+						<button mat-icon-button (click)="updateQuantity(item?.id, 'decrease')" [disabled]="disableCart">
+							<mat-icon>remove_circle_outline</mat-icon>
+						</button>
+						<button mat-icon-button (click)="updateQuantity(item?.id, 'increase')" [disabled]="disableCart">
+							<mat-icon class="clickable">add_circle_outline</mat-icon>
+						</button>
 					</div>
 				</div>
 				<div class="price align-right margin-top-1">
@@ -25,14 +29,25 @@
 				</div>
 			</div>
 		</div>
+		<div *ngIf="shippingCost">
+			<div class="margin-top-1 flex space-between items-center">
+				<div>Subtotal</div>
+				<div>{{subTotal | currency:'ZAR':'symbol-narrow'}}</div>
+			</div>
+			<div class="margin-top-1 flex space-between items-center">
+				<div>Shipping</div>
+				<div>{{shippingCost | currency:'ZAR':'symbol-narrow'}}</div>
+			</div>
+		</div>
 
 		<div class="margin-top-1 order-total">
 			<div>Order Total</div>
-			<div>R2,478.89</div>
+			<div>{{orderTotal | currency:'ZAR':'symbol-narrow'}}</div>
 		</div>
 
 		<div class="margin-top-2">
-			<button mat-raised-button color="primary" class="full-width">CHECKOUT</button>
+			<button *ngIf="!loadOnInit" mat-raised-button color="primary" class="full-width" routerLink="/checkout" (click)="onNav.emit()">CHECKOUT</button>
+			<button *ngIf="loadOnInit" mat-raised-button color="primary" class="full-width" (click)="onCheckout.emit()" [disabled]="disableContinueButton || disableCart">CONTINUE</button>
 		</div>
 	</div>
 </div>

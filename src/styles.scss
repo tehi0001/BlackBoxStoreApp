@@ -66,6 +66,19 @@ a, a[routerLink] {
 }
 
 
+.flex {
+	display: flex;
+
+	&.space-between {
+		justify-content: space-between;
+	}
+
+	&.items-center {
+		align-items: center;
+	}
+}
+
+
 // Dialogs
 
 .error-message {

@@ -22,6 +22,10 @@ import {HttpClientModule} from "@angular/common/http";
 import {DialogService} from "./services/dialog.service";
 import { DiscountedPricePipe } from './pipes/discounted-price.pipe';
 import { Nl2brPipe } from './pipes/nl2br.pipe';
+import { CheckoutComponent } from './checkout/checkout.component';
+import {SessionService} from "./services/session.service";
+import { PaymentComponent } from './payment/payment.component';
+import { CheckoutCompleteComponent } from './checkout-complete/checkout-complete.component';
 
 @NgModule({
 	declarations: [
@@ -35,8 +39,11 @@ import { Nl2brPipe } from './pipes/nl2br.pipe';
 		CartComponent,
 		LoginComponent,
 		RegisterComponent,
-  DiscountedPricePipe,
-  Nl2brPipe
+		DiscountedPricePipe,
+		Nl2brPipe,
+		CheckoutComponent,
+  PaymentComponent,
+  CheckoutCompleteComponent
 	],
 	imports: [
 		BrowserModule,
@@ -46,7 +53,7 @@ import { Nl2brPipe } from './pipes/nl2br.pipe';
 		ReactiveFormsModule,
 		HttpClientModule
 	],
-	providers: [ProductService, CartService, ApiService, DialogService],
+	providers: [ProductService, CartService, ApiService, DialogService, SessionService],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

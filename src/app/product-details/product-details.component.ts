@@ -38,6 +38,9 @@ export class ProductDetailsComponent implements OnInit {
 	}
 
 	getProduct(id: number) {
+		this.productProperties.dimensions = [];
+		this.productProperties.others = [];
+
 		this.loadingProductData = true;
 
 		this.productService.getProduct(id).subscribe(response => {

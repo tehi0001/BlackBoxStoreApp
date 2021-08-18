@@ -1,7 +1,17 @@
 .cart-container {
-	padding: 2em;
 	box-sizing: border-box;
 	font-size: 15px;
+	padding: 2em;
+
+	.cart-title {
+		font-weight: normal;
+		font-size: 17px;
+		margin: 0 0 1em;
+	}
+
+	&.checkout-mode {
+		padding: 1em;
+	}
 
 	.item {
 		display: flex;

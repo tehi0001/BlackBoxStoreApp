@@ -16,6 +16,8 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatRadioModule} from '@angular/material/radio';
+
 
 @NgModule({
 	declarations: [],
@@ -36,7 +38,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 		MatPaginatorModule,
 		MatProgressSpinnerModule,
 		MatSnackBarModule,
-		MatDialogModule
+		MatDialogModule,
+		MatRadioModule
 	],
 	exports: [
 		MatToolbarModule,
@@ -54,7 +57,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 		MatPaginatorModule,
 		MatProgressSpinnerModule,
 		MatSnackBarModule,
-		MatDialogModule
+		MatDialogModule,
+		MatRadioModule
 	]
 })
 export class MaterialModule {}

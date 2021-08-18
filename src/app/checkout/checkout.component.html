@@ -1,0 +1,67 @@
+<div class="checkout-container">
+	<mat-card class="checkout-form">
+		<div *ngIf="loadingDataFromApi" style="margin-top: 5em">
+			<mat-spinner diameter="40" class="loader"></mat-spinner>
+		</div>
+		<div *ngIf="!loadingDataFromApi">
+			<h1>{{activeForm == 'billing' ? 'BILL' : 'SHIP'}} TO</h1>
+
+			<form [formGroup]="checkoutForm" class="margin-top-2">
+				<mat-radio-group class="shipping-categories" formControlName="shippingCategory" (change)="updateShippingCost()">
+					<div *ngFor="let category of shippingCategories; let index = index" class="category">
+						<mat-radio-button [value]="category?.id" color="primary" [checked]="index == 0">
+							<div class="data">
+								<div style="font-weight: 500">{{category?.category_name}} - {{category?.cost == 0 ? 'FREE' : category?.cost | currency:'ZAR':'symbol-narrow'}}</div>
+								<div>{{category?.description}}</div>
+								<div *ngIf="category?.conditions">({{category?.conditions}})</div>
+							</div>
+						</mat-radio-button>
+					</div>
+				</mat-radio-group>
+				<div class="margin-top-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2em">
+					<mat-form-field appearance="outline" class="full-width">
+						<mat-label>First Name</mat-label>
+						<input type="text" matInput formControlName="firstname">
+					</mat-form-field>
+					<mat-form-field appearance="outline" class="full-width">
+						<mat-label>Last Name</mat-label>
+						<input type="text" matInput formControlName="lastname">
+					</mat-form-field>
+				</div>
+				<mat-form-field appearance="outline" class="full-width">
+					<mat-label>Address</mat-label>
+					<input type="text" matInput formControlName="address">
+				</mat-form-field>
+				<div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2em">
+					<mat-form-field appearance="outline" class="full-width">
+						<mat-label>City</mat-label>
+						<input type="text" matInput formControlName="city">
+					</mat-form-field>
+					<mat-form-field appearance="outline" class="full-width">
+						<mat-label>Post code</mat-label>
+						<input type="text" matInput formControlName="postcode">
+					</mat-form-field>
+					<mat-form-field appearance="outline" class="full-width">
+						<mat-label>Province</mat-label>
+						<mat-select formControlName="province">
+							<mat-option *ngFor="let province of provinces" [value]="province.code">{{province.name}}</mat-option>
+						</mat-select>
+					</mat-form-field>
+				</div>
+				<div class="margin-top-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2em">
+					<mat-form-field appearance="outline" class="full-width">
+						<mat-label>Phone</mat-label>
+						<input type="number" matInput formControlName="phone">
+					</mat-form-field>
+					<mat-form-field appearance="outline" class="full-width">
+						<mat-label>Email</mat-label>
+						<input type="email" matInput formControlName="email">
+					</mat-form-field>
+				</div>
+			</form>
+		</div>
+	</mat-card>
+	<mat-card class="cart">
+		<app-cart [loadOnInit]="true" (dataLoaded)="loadingDataFromApi = false" (onCheckout)="onFormSubmit()" [disableContinueButton]="disableContinueButton" [disableCart]="disableCart"></app-cart>
+	</mat-card>
+</div>

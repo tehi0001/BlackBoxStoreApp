@@ -1,0 +1,28 @@
+<div class="container">
+	<div *ngIf="paymentSuccessful">
+		<div>
+			<mat-icon class="success">check_circle</mat-icon>
+		</div>
+		<div>
+			<h1>Thank you!</h1>
+			<h2>Your payment was successful.</h2>
+			<h2>We'll email you a receipt confirming your payment and order details shortly.</h2>
+		</div>
+		<div class="margin-top-3">
+			<a routerLink="/products">Continue shopping</a>
+		</div>
+	</div>
+	<div *ngIf="!paymentSuccessful">
+		<div>
+			<mat-icon class="fail">error</mat-icon>
+		</div>
+		<div>
+			<h1>Oops...</h1>
+			<h2>Sorry your payment was unsuccessful.</h2>
+			<h2>Please check your payment details and try again</h2>
+		</div>
+		<div class="margin-top-3">
+			<a routerLink="/checkout/pay">Try again</a>
+		</div>
+	</div>
+</div>

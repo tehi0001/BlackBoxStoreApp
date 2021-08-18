@@ -1,0 +1,21 @@
+.checkout-container {
+	display: grid;
+	grid-template-columns: auto 450px;
+	gap: 4em;
+	padding: 2em;
+
+	.checkout-form {
+		padding: 2em;
+	}
+
+	.shipping-categories {
+
+		.category {
+			margin: 1em 0;
+
+			.data {
+				padding-left: 1em;
+			}
+		}
+	}
+}
