@@ -67,8 +67,14 @@ export class LoginComponent implements OnInit {
 		this.authFormBusy = true;
 		this.userService.auth(this.authForm.value).subscribe(response => {
 			if(response.success) {
-				this.userService.login(response.token, response.data.firstname, response.data.lastname);
-				this.router.navigateByUrl("/products");
+				this.userService.login(response.token, response.data.firstname, response.data.lastname, this.authForm.value.email);
+
+				if(this.authForCheckout) {
+					this.router.navigateByUrl("/checkout");
+				}
+				else {
+					this.router.navigateByUrl("/products");
+				}
 			}
 			else {
 				this.dialogService.notify(response.message)

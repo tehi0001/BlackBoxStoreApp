@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {API_URL} from "../config";
 
@@ -13,8 +13,10 @@ export class UserService {
 	// @ts-ignore
 	sessionUser: {
 		firstname: string,
-		lastname: string
+		lastname: string,
+		email: string
 	} | null;
+
 
 	// @ts-ignore
 	token: string | null;
@@ -23,13 +25,14 @@ export class UserService {
 		private http: HttpClient
 	) { }
 
-	login(token: string, firstname: string, lastname: string) {
+	login(token: string, firstname: string, lastname: string, email: string) {
 		this.token = token;
 		this.isLoggedIn = true;
 
 		this.sessionUser = {
 			firstname: firstname,
-			lastname: lastname
+			lastname: lastname,
+			email: email
 		}
 
 		sessionStorage.setItem("sessionToken", token);
@@ -68,5 +71,18 @@ export class UserService {
 
 	auth(user: any): Observable<any> {
 		return this.http.post(API_URL + "/auth", user);
+	}
+
+	getUserAbbr(): string {
+		// @ts-ignore
+		return this.sessionUser?.firstname.substr(0, 1) + this.sessionUser?.lastname.substr(0, 1);
+	}
+
+	get authHeader(): any {
+		return {
+			headers: new HttpHeaders({
+				Authorization: "Bearer " + this.token
+			})
+		}
 	}
 }

@@ -5,6 +5,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {API_URL} from "../config";
 import {SessionService} from "./session.service";
+import {UserService} from "./user.service";
 
 interface CartItem {
 	productId: number,
@@ -24,7 +25,7 @@ export class CartService {
 	constructor(
 		private dialogService: DialogService,
 		private http: HttpClient,
-		private sessionService: SessionService
+		private userService: UserService
 	) {
 		let storedCart = localStorage.getItem("cart");
 		if(storedCart !== null) {
@@ -91,7 +92,7 @@ export class CartService {
 		return this.http.post(API_URL + "/checkout", {
 			order: order,
 			cart: this.cart
-		}, (this.sessionService.isActive ? this.sessionService.authHeader : undefined));
+		}, (this.userService.loggedIn ? this.userService.authHeader : undefined));
 	}
 
 	setPendingOrderId(id: number) {

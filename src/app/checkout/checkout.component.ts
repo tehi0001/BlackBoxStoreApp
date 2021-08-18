@@ -8,6 +8,7 @@ import {CartComponent} from "../cart/cart.component";
 import {Location} from "@angular/common";
 import {SessionService} from "../services/session.service";
 import {Router} from "@angular/router";
+import {UserService} from "../services/user.service";
 
 @Component({
   selector: 'app-checkout',
@@ -34,6 +35,8 @@ export class CheckoutComponent implements OnInit {
 
 	shippingCategories: any;
 
+	emailLabel:string = "Email";
+
 	// @ts-ignore
 	@ViewChild(CartComponent) cart: CartComponent
 
@@ -41,7 +44,7 @@ export class CheckoutComponent implements OnInit {
 		private cartService: CartService,
 		private apiService: ApiService,
 		private location: Location,
-		private sessionService: SessionService,
+		private userService: UserService,
 		private router: Router
 	) {
 		this.checkoutForm = new FormGroup({
@@ -65,7 +68,7 @@ export class CheckoutComponent implements OnInit {
 			let state = this.location.getState();
 
 			// @ts-ignore
-			if(state.noAuth && !this.sessionService.isActive) {
+			if(state.noAuth || this.userService.loggedIn) {
 				this.activeForm = "billing";
 			}
 			else {
@@ -77,6 +80,12 @@ export class CheckoutComponent implements OnInit {
 			this.checkoutForm.valueChanges.subscribe(() => {
 				this.disableContinueButton = this.checkoutForm.invalid;
 			})
+		}
+
+		if(this.userService.loggedIn) {
+			this.checkoutForm.controls.firstname.setValue(this.userService.sessionUser?.firstname);
+			this.checkoutForm.controls.lastname.setValue(this.userService.sessionUser?.lastname);
+			this.checkoutForm.controls.email.setValue(this.userService.sessionUser?.email);
 		}
 	}
 
@@ -97,6 +106,10 @@ export class CheckoutComponent implements OnInit {
 					this.shippingCategories = response.data;
 
 					this.resetForm();
+					this.checkoutForm.controls.email.setValidators(null);
+					this.checkoutForm.controls.email.setValidators([Validators.pattern(EMAIL_VALIDATION_REGEX)]);
+
+					this.emailLabel = "Email (optional)";
 
 					this.activeForm = "shipping";
 
@@ -122,7 +135,7 @@ export class CheckoutComponent implements OnInit {
 
 			let order = {
 				shipping: this.shippingInfo,
-				billing: this.sessionService.isActive ? undefined : this.billingInfo,
+				billing: this.billingInfo,
 				total: this.cart.orderTotal
 			}
 

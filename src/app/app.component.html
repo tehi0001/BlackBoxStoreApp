@@ -10,7 +10,7 @@
 	</div>
 	<div class="top-nav-icons">
 		<div class="session-user clickable" *ngIf="userService.loggedIn" [matMenuTriggerFor]="userMenu">
-			JB
+			{{userService.getUserAbbr()}}
 		</div>
 		<button mat-icon-button routerLink="/login" style="margin-right: 1em" *ngIf="!userService.loggedIn">
 			<mat-icon>person</mat-icon>
