@@ -106,8 +106,11 @@ export class CartService {
 		return false;
 	}
 
-	completePendingOrder(): Observable<any> {
-		return this.http.post(API_URL + "/complete-order", {id: this.pendingOrderId});
+	updatePendingOrder(paymentSuccessful: boolean): Observable<any> {
+		return this.http.post(API_URL + "/update-order", {
+			id: this.pendingOrderId,
+			paymentSuccessful: paymentSuccessful
+		});
 	}
 
 	clearCart(): void {

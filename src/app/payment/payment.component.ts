@@ -10,8 +10,6 @@ import {ApiService} from "../services/api.service";
 })
 export class PaymentComponent implements OnInit, AfterViewInit {
 
-	paymentSuccessful: boolean = true;
-
 	constructor(
 		private router: Router,
 		private cartService: CartService,
@@ -22,25 +20,22 @@ export class PaymentComponent implements OnInit, AfterViewInit {
 	}
 
 	ngAfterViewInit(): void {
-		setTimeout(() => {
-			this.processPayment();
-		}, 5000);
 	}
 
-	processPayment(): void {
-		if(this.paymentSuccessful) {
-			this.cartService.completePendingOrder().subscribe(response => {
-				if(response.success) {
+	processPayment(paymentSuccessful: boolean): void {
+
+		this.cartService.updatePendingOrder(paymentSuccessful).subscribe(response => {
+			if(response.success) {
+				if(paymentSuccessful) {
 					this.cartService.clearCart();
 					this.router.navigateByUrl("/checkout/done");
 				}
-			}, error => {
-				this.apiService.handleHttpErrors(error);
-			})
-		}
-		else {
-			this.router.navigateByUrl("/checkout/pay/failed");
-		}
+				else {
+					this.router.navigateByUrl("/checkout/pay/failed");
+				}
+			}
+		}, error => {
+			this.apiService.handleHttpErrors(error);
+		})
 	}
-
 }

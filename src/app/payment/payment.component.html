@@ -1,4 +1,12 @@
 <div class="payment-container">
 	<mat-spinner diameter="30"></mat-spinner>
 	<h2 style="padding-top: 1em; font-weight: 400">Please wait while we redirect you to our secure payment processor</h2>
+	<div class="margin-top-3 align-center">
+		<div>
+			<a class="clickable" (click)="processPayment(true)">Payment Successful</a>
+		</div>
+		<div class="margin-top-1">
+			<a class="clickable" (click)="processPayment(false)">Payment Failed</a>
+		</div>
+	</div>
 </div>

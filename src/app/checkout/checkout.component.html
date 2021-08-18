@@ -6,18 +6,11 @@
 		<div *ngIf="!loadingDataFromApi">
 			<h1>{{activeForm == 'billing' ? 'BILL' : 'SHIP'}} TO</h1>
 
+			<div class="margin-top-3" *ngIf="activeForm == 'shipping'">
+				<mat-checkbox color="primary" (change)="toggleShippingInfo($event)">Same as billing</mat-checkbox>
+			</div>
+
 			<form [formGroup]="checkoutForm" class="margin-top-2">
-				<mat-radio-group class="shipping-categories" formControlName="shippingCategory" (change)="updateShippingCost()">
-					<div *ngFor="let category of shippingCategories; let index = index" class="category">
-						<mat-radio-button [value]="category?.id" color="primary" [checked]="index == 0">
-							<div class="data">
-								<div style="font-weight: 500">{{category?.category_name}} - {{category?.cost == 0 ? 'FREE' : category?.cost | currency:'ZAR':'symbol-narrow'}}</div>
-								<div>{{category?.description}}</div>
-								<div *ngIf="category?.conditions">({{category?.conditions}})</div>
-							</div>
-						</mat-radio-button>
-					</div>
-				</mat-radio-group>
 				<div class="margin-top-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2em">
 					<mat-form-field appearance="outline" class="full-width">
 						<mat-label>First Name</mat-label>
@@ -57,6 +50,20 @@
 						<mat-label>Email</mat-label>
 						<input type="email" matInput formControlName="email">
 					</mat-form-field>
+				</div>
+				<div class="margin-top-2" *ngIf="activeForm == 'shipping'">
+					<h3>SHIPPING METHOD</h3>
+					<mat-radio-group class="shipping-categories" formControlName="shippingCategory" (change)="updateShippingCost()">
+						<div *ngFor="let category of shippingCategories; let index = index" class="category">
+							<mat-radio-button [value]="category?.id" color="primary">
+								<div class="data">
+									<div style="font-weight: 500">{{category?.category_name}} - {{category?.cost == 0 ? 'FREE' : category?.cost | currency:'ZAR':'symbol-narrow'}}</div>
+									<div>{{category?.description}}</div>
+									<div *ngIf="category?.conditions">({{category?.conditions}})</div>
+								</div>
+							</mat-radio-button>
+						</div>
+					</mat-radio-group>
 				</div>
 			</form>
 		</div>

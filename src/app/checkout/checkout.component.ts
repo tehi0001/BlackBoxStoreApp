@@ -78,6 +78,11 @@ export class CheckoutComponent implements OnInit {
 		}
 	}
 
+	resetForm(): void {
+		this.checkoutForm.reset();
+		this.checkoutForm.clearValidators();
+	}
+
 	onFormSubmit() {
 		this.disableContinueButton = true;
 
@@ -89,8 +94,7 @@ export class CheckoutComponent implements OnInit {
 				if(response.success) {
 					this.shippingCategories = response.data;
 
-					this.checkoutForm.reset();
-					this.checkoutForm.clearValidators();
+					this.resetForm();
 
 					this.activeForm = "shipping";
 
@@ -98,6 +102,8 @@ export class CheckoutComponent implements OnInit {
 
 					this.cart.shippingCost = response.data[0].cost;
 					this.cart.showShippingCost = true;
+
+					this.checkoutForm.controls.shippingCategory.setValue(response.data[0].id);
 
 				}
 			}, error => {
@@ -129,6 +135,19 @@ export class CheckoutComponent implements OnInit {
 		}
 	}
 
+	toggleShippingInfo($event: any) {
+		let shippitCat = this.checkoutForm.value.shippingCategory;
+
+		if($event.checked) {
+			this.checkoutForm.setValue(this.billingInfo);
+			this.checkoutForm.controls.shippingCategory.setValue(shippitCat);
+		}
+		else {
+			this.resetForm();
+			this.checkoutForm.controls.shippingCategory.setValue(shippitCat);
+		}
+	}
+
 	updateShippingCost() {
 
 		let id = this.checkoutForm.value.shippingCategory;
@@ -142,5 +161,4 @@ export class CheckoutComponent implements OnInit {
 		this.cart.shippingCost = this.shippingCategories[index].cost;
 		this.cart.updateCartTotal();
 	}
-
 }
