@@ -19,7 +19,7 @@
 						<div class="product-price" [ngClass]="{discounted: product?.discount > 0}">{{product?.price | currency:'ZAR':'symbol-narrow'}}</div>
 						<div class="product-price" *ngIf="product?.discount > 0">{{product?.price | discountedPrice:product?.discount | currency:'ZAR':'symbol-narrow'}}</div>
 					</div>
-					<button mat-flat-button color="primary" (click)="cartService.addItem(product?.id, product?.product_name)"><mat-icon>add_shopping_cart</mat-icon></button>
+					<button mat-flat-button color="primary" (click)="cartService.addItem(product?.id, product?.product_name)" [disabled]="product?.stock < 1"><mat-icon>add_shopping_cart</mat-icon></button>
 				</div>
 			</div>
 		</mat-card>

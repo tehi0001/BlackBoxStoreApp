@@ -3,6 +3,7 @@ import {ProductService} from "../services/product.service";
 import {ApiService} from "../services/api.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {CartService} from "../services/cart.service";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-product-details',
@@ -24,6 +25,9 @@ export class ProductDetailsComponent implements OnInit {
 
 	selectedProductProperties: { name: string, value: string}[] = [];
 
+	// @ts-ignore
+	quantityForm: FormGroup;
+
 	constructor(
 		private productService: ProductService,
 		private apiService: ApiService,
@@ -34,6 +38,10 @@ export class ProductDetailsComponent implements OnInit {
 	ngOnInit(): void {
 		this.route.params.subscribe(param => {
 			this.getProduct(param.id);
+		})
+
+		this.quantityForm = new FormGroup({
+			quantity: new FormControl('1', [Validators.required])
 		})
 	}
 
@@ -111,7 +119,7 @@ export class ProductDetailsComponent implements OnInit {
 		});
 	}
 
-	addToCart(quantity: string): void {
-		this.cartService.addItem(this.product.id, this.product.product_name, parseInt(quantity), this.selectedProductProperties);
+	addToCart(): void {
+		this.cartService.addItem(this.product.id, this.product.product_name, parseInt(this.quantityForm.value.quantity), this.selectedProductProperties);
 	}
 }
