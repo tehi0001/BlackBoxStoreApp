@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import {DialogService} from "./dialog.service";
-import {findIndex, lt} from "lodash";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {API_URL} from "../config";
-import {SessionService} from "./session.service";
 import {UserService} from "./user.service";
 
 interface CartItem {

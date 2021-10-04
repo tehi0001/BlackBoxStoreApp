@@ -1,0 +1,77 @@
+<div class="container">
+	<div class="flex space-between items-center">
+		<h1 class="header">Order Details</h1>
+		<button mat-raised-button color="accent" routerLink="/account/orders">BACK TO ORDERS</button>
+	</div>
+
+	<div class="margin-top-3" *ngIf="loadingOrder">
+		<mat-spinner diameter="30" class="loader"></mat-spinner>
+	</div>
+
+	<div *ngIf="!loadingOrder">
+		<mat-card class="margin-top-2">
+			<div class="title">Order No. {{order?.order_number}}</div>
+			<div class="details margin-top-2">
+				<div class="detail">
+					<h2 class="head">Billing Details</h2>
+					<div class="info address">
+						<div>{{order?.billing.firstname}} {{order?.billing.lastname}}</div>
+						<div>{{order?.billing.address}}</div>
+						<div>{{order?.billing.city}}, {{order?.billing.postcode}}</div>
+						<div>{{order?.billing.province}}</div>
+						<div>Tel: {{order?.billing.phone}}</div>
+					</div>
+				</div>
+				<div class="detail">
+					<h2 class="head">Shipping Details</h2>
+					<div class="info address">
+						<div>{{order?.shipping.firstname}} {{order?.shipping.lastname}}</div>
+						<div>{{order?.shipping.address}}</div>
+						<div>{{order?.shipping.city}}, {{order?.shipping.postcode}}</div>
+						<div>{{order?.shipping.province}}</div>
+						<div>Tel: {{order?.shipping.phone}}</div>
+					</div>
+				</div>
+				<div>
+					<div class="detail">
+						<h2 class="head">Delivery Method</h2>
+						<div class="info">{{order?.category_name}}</div>
+					</div>
+
+					<div class="detail margin-top-1">
+						<h2 class="head">Payment Method</h2>
+						<div class="info">{{order?.payment_method}}</div>
+					</div>
+				</div>
+				<div>
+					<div class="detail">
+						<h2 class="head">Order Total</h2>
+						<div class="info">{{order?.total | currency:'ZAR':'symbol-narrow'}}</div>
+					</div>
+					<div class="detail margin-top-1">
+						<h2 class="head">Order Status</h2>
+						<div class="info">{{order?.status | orderStatus}}</div>
+					</div>
+				</div>
+			</div>
+		</mat-card>
+		<mat-card class="margin-top-2 order-items">
+			<h1>Order Items</h1>
+
+			<div class="item flex margin-top-2" *ngFor="let item of order?.items">
+				<div class="image">
+					<img src="{{item?.image}}">
+				</div>
+				<div>
+					<div class="name">{{item?.product_name}}</div>
+					<div class="quantity">Quantity: {{item?.quantity}}</div>
+					<div class="price">{{item?.unit_cost | currency:'ZAR':'symbol-narrow'}}</div>
+					<div class="margin-top-1">
+						<button mat-button color="primary" style="margin-right: 1em">Return</button>
+						<button mat-button color="primary">Review</button>
+					</div>
+				</div>
+			</div>
+		</mat-card>
+	</div>
+</div>

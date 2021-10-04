@@ -29,6 +29,11 @@ import { CheckoutCompleteComponent } from './checkout-complete/checkout-complete
 import {UserService} from "./services/user.service";
 import { RegistrationDoneComponent } from './registration-done/registration-done.component';
 import { LogoutComponent } from './logout/logout.component';
+import { ManageOrdersComponent } from './manage-orders/manage-orders.component';
+import {PromotionService} from "./services/promotion.service";
+import {OrdersService} from "./services/orders.service";
+import { OrderStatusPipe } from './pipes/order-status.pipe';
+import { ViewOrderComponent } from './view-order/view-order.component';
 
 @NgModule({
 	declarations: [
@@ -48,7 +53,10 @@ import { LogoutComponent } from './logout/logout.component';
   PaymentComponent,
   CheckoutCompleteComponent,
   RegistrationDoneComponent,
-  LogoutComponent
+  LogoutComponent,
+  ManageOrdersComponent,
+  OrderStatusPipe,
+  ViewOrderComponent
 	],
 	imports: [
 		BrowserModule,
@@ -59,7 +67,7 @@ import { LogoutComponent } from './logout/logout.component';
 		HttpClientModule,
 		FormsModule
 	],
-	providers: [ProductService, CartService, ApiService, DialogService, SessionService, UserService],
+	providers: [ProductService, CartService, ApiService, DialogService, SessionService, UserService, PromotionService, OrdersService],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

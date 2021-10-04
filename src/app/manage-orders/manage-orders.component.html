@@ -1,0 +1,33 @@
+<div class="container">
+	<h1 class="header">My Orders</h1>
+
+	<div class="margin-top-3" *ngIf="loadingOrders">
+		<mat-spinner diameter="30" class="loader"></mat-spinner>
+	</div>
+
+	<div class="orders margin-top-2" *ngIf="!loadingOrders">
+		<mat-card class="order" *ngFor="let order of orders">
+			<table>
+				<tr>
+					<th>Order No. :</th>
+					<td>{{order?.order_number}}</td>
+				</tr>
+				<tr>
+					<th>Date :</th>
+					<td>{{order?.date | date:'medium'}}</td>
+				</tr>
+				<tr>
+					<th>Total :</th>
+					<td>{{order?.total | currency:'ZAR':'symbol-narrow'}}</td>
+				</tr>
+				<tr>
+					<th>Status :</th>
+					<td>{{order?.status | orderStatus}}</td>
+				</tr>
+			</table>
+			<div class="align-right margin-top-1">
+				<button mat-stroked-button color="primary" routerLink="/account/orders/{{order?.id}}">Details</button>
+			</div>
+		</mat-card>
+	</div>
+</div>

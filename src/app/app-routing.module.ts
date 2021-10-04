@@ -10,6 +10,8 @@ import {PaymentComponent} from "./payment/payment.component";
 import {CheckoutCompleteComponent} from "./checkout-complete/checkout-complete.component";
 import {RegistrationDoneComponent} from "./registration-done/registration-done.component";
 import {LogoutComponent} from "./logout/logout.component";
+import {ManageOrdersComponent} from "./manage-orders/manage-orders.component";
+import {ViewOrderComponent} from "./view-order/view-order.component";
 
 const routes: Routes = [
 	{
@@ -71,6 +73,19 @@ const routes: Routes = [
 	{
 		path: "register/done",
 		component: RegistrationDoneComponent
+	},
+	{
+		path: "account",
+		redirectTo: "home",
+		pathMatch: "full"
+	},
+	{
+		path: "account/orders",
+		component: ManageOrdersComponent
+	},
+	{
+		path: "account/orders/:id",
+		component: ViewOrderComponent
 	}
 ];
 

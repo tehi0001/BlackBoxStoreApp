@@ -1,0 +1,22 @@
+.container {
+	padding: 2em;
+
+	.orders {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+		gap: 2em;
+
+		.order {
+			
+			table {
+				th, td {
+					padding: .5em
+				}
+				th {
+					padding-left: 0;
+					text-align: left;
+				}
+			}
+		}
+	}
+}

@@ -1,5 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Promotion} from "../models/promotion";
+import {PromotionService} from "../services/promotion.service";
+import {ApiService} from "../services/api.service";
 
 @Component({
   selector: 'app-promotions',
@@ -10,15 +12,26 @@ export class PromotionsComponent implements OnInit {
 
 	@Output() loaded: EventEmitter<any> = new EventEmitter<any>();
 
-	promotion: Promotion = {
-		image_url: "assets/dummies/promotion.png",
-		promotion_url: "/products"
-	};
+	// @ts-ignore
+	promotion: Promotion;
 
-	constructor() {}
+	constructor(
+		private pService: PromotionService,
+		private apiService: ApiService
+	) {}
 
 	ngOnInit(): void {
-		this.loaded.emit();
+		this.pService.getPromotions().subscribe(response => {
+			if(response.success) {
+				this.promotion = response.data;
+				this.loaded.emit();
+			}
+		}, error => {
+			this.apiService.handleHttpErrors(error);
+			this.loaded.emit();
+		})
+
+
 	}
 
 }
