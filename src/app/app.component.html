@@ -1,8 +1,12 @@
 <div class="nav-bar">
-	<div>
+	<div class="flex items-center">
+		<a class="main-menu-control clickable visible-xs" (click)="categoriesNav.toggle()" style="margin-right: .5em">
+			<mat-icon>menu</mat-icon>
+		</a>
 		<a href="/"><img class="logo" src="assets/images/logo.png" routerLink="/"></a>
 	</div>
-	<div class="search-bar">
+	<div class="visible-xs" style="flex: 1 1 auto"></div>
+	<div class="search-bar hidden-xs">
 		<form [formGroup]="searchForm" (submit)="search()">
 			<div class="search-controls">
 				<input type="text" class="search-input" placeholder="Search" formControlName="query">
@@ -23,10 +27,12 @@
 				<mat-icon>manage_accounts</mat-icon>
 				<span>My Account</span>
 			</button>
+			<!--
 			<button mat-menu-item>
 				<mat-icon>local_shipping</mat-icon>
 				<span>My Addresses</span>
 			</button>
+			-->
 			<button mat-menu-item routerLink="/account/orders">
 				<mat-icon>receipt</mat-icon>
 				<span>My Orders</span>
@@ -43,14 +49,22 @@
 	</div>
 </div>
 <mat-toolbar class="main-toolbar">
-	<div>
+	<div class="search-bar visible-xs">
+		<form [formGroup]="searchForm" (submit)="search()">
+			<div class="search-controls">
+				<input type="text" class="search-input" placeholder="Search" formControlName="query">
+				<button type="submit" class="search-btn">Search</button>
+			</div>
+		</form>
+	</div>
+	<div class="hidden-xs">
 		<a class="main-menu-control clickable" (click)="categoriesNav.toggle()">
 			<mat-icon>menu</mat-icon>
 			<span style="font-size: 14px">All Categories</span>
 		</a>
 	</div>
-	<div style="flex: 1 1 100%"></div>
-	<div class="top-navs">
+	<div style="flex: 1 1 100%" class="hidden-xs"></div>
+	<div class="top-navs hidden-xs">
 		<a href="#">
 			<mat-icon>location_on</mat-icon>
 			<div>Find a store</div>
@@ -91,7 +105,7 @@
 
 
 <div class="footer">
-	<div class="footer-column footer-about">
+	<div class="footer-column footer-about hidden-xs">
 		<h2>ABOUT US</h2>
 		<p>
 			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et nulla consectetur, pellentesque lorem eget, tincidunt augue.

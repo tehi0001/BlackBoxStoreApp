@@ -1,14 +1,42 @@
-@import "src/theme";
+@import "src/theme", "src/media";
 
 .product-container {
 	padding: 2em 3em 3em;
 
+	@include phone {
+		padding: 1.5em;
+	}
+
 	.product-details {
 		display: flex;
+
+		@include phone {
+			display: grid;
+			gap: 2em;
+		}
+
+		.prod-images {
+			margin-right: 6em;
+
+			@include phone {
+				margin: 0;
+				flex: 1;
+			}
+		}
 
 		.product-img {
 			img {
 				max-width: 400px;
+
+				@include phone {
+					max-width: 100%;
+				}
+			}
+		}
+
+		.prod-info {
+			@include phone {
+				flex: 1;
 			}
 		}
 
@@ -87,8 +115,13 @@
 		padding: 3em 3em 5em;
 		display: grid;
 		grid-template-columns: 1fr 1fr 1fr;
-		gap: 6em;
+		gap: 4em;
 		font-size: 15px;
+
+		@include phone {
+			grid-template-columns: 1fr;
+			padding: 1.5em;
+		}
 
 		table {
 			width: 100%;
@@ -120,10 +153,18 @@
 	.reviews-and-ratings {
 		padding: 3em;
 
+		@include phone {
+			padding: 1.5em;
+		}
+
 		.columns {
 			display: grid;
 			grid-template-columns: 1fr 1fr;
 			gap: 7em;
+
+			@include phone {
+				grid-template-columns: 1fr;
+			}
 
 			.ratings {
 				font-size: 17px;
@@ -169,7 +210,7 @@
 			.reviews {
 
 				.review {
-					font-size: 17px;
+					font-size: 15px;
 					padding: 2em 0;
 					border-bottom: 1px solid lightgray;
 
@@ -184,6 +225,7 @@
 
 						.name {
 							margin: 0;
+							font-weight: bold;
 						}
 					}
 

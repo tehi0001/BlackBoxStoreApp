@@ -1,3 +1,5 @@
+@import "src/media";
+
 .login-container {
 	min-height: 600px;
 	padding: 2em;
@@ -9,5 +11,9 @@
 	.login-box {
 		width: 400px;
 		font-size: 16px;
+
+		@include phone {
+			width: 100%;
+		}
 	}
 }

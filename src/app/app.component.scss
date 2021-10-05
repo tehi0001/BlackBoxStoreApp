@@ -1,53 +1,85 @@
-@import "src/theme";
+@import "src/theme", "src/media";
+
+
+.search-bar {
+	flex: 1 1 100%;
+	padding-top: 0.7em;
+
+	@include phone {
+		padding: 0;
+	}
+
+	.search-controls {
+		width: 60%;
+		margin: 0 auto;
+		display: flex;
+
+		@include phone {
+			width: 100%;
+		}
+
+		.search-input {
+			width: 100%;
+			padding: 1em 2em;
+			border: 1px solid lightblue;
+			border-radius: 5px 0 0 5px;
+
+			@include phone {
+				padding: .5em;
+			}
+
+			&:focus {
+				outline: none;
+				border: 2px solid $primary;
+			}
+		}
+
+		.search-btn {
+			background: $primary;
+			color: #fff;
+			font-size: 18px;
+			padding: 0em 2em;
+			border-radius: 0 5px 5px 0;
+			border: 1px solid $primary;
+
+			@include phone {
+				font-size: 15px;
+				padding: 0 1em;
+			}
+
+			&:hover {
+				background: darken($primary, 10%);
+			}
+		}
+	}
+}
 
 
 .nav-bar {
 	display: flex;
 	padding: 1em 2em;
 
+	@include phone {
+		padding: .7em;
+	}
+
 	.logo {
 		max-height: 60px;
-	}
 
-	.search-bar {
-		flex: 1 1 100%;
-		padding-top: 0.7em;
-
-		.search-controls {
-			width: 60%;
-			margin: 0 auto;
-			display: flex;
-
-			.search-input {
-				width: 100%;
-				padding: 1em 2em;
-				border: 1px solid lightblue;
-				border-radius: 5px 0 0 5px;
-
-				&:focus {
-					outline: none;
-					border: 2px solid $primary;
-				}
-			}
-
-			.search-btn {
-				background: $primary;
-				color: #fff;
-				font-size: 18px;
-				padding: 0em 2em;
-				border-radius: 0 5px 5px 0;
-				border: 1px solid $primary;
-
-				&:hover {
-					background: darken($primary, 10%);
-				}
-			}
+		@include phone {
+			max-height: 35px;
 		}
 	}
+
+
 
 	.top-nav-icons {
 		padding-top: 1em;
 		display: flex;
+
+		@include phone {
+			padding: 0;
+		}
 
 		.session-user {
 			height: 32px;
@@ -122,6 +154,10 @@ mat-sidenav-container {
 		width: 350px;
 		padding: 0 1.5em 1.5em;
 
+		@include phone {
+			width: 280px;
+		}
+
 		a {
 			display: block;
 			font-size: 15px;
@@ -145,6 +181,10 @@ mat-sidenav-container {
 		width: 450px;
 		padding-bottom: 3em;
 		background: #fff;
+
+		@include phone {
+			width: 100%;
+		}
 	}
 
 	.route-content {
@@ -160,18 +200,26 @@ mat-sidenav-container {
 	display: flex;
 	padding: 2em;
 
+	@include phone {
+		display: grid;
+		padding: 1em;
+	}
+
 	a {
 		font-size: 16px;
 	}
 
 	h2 {
-		margin: 0;
-		margin-bottom: 1em;
+		margin: 0 0 1em;
 		font-size: 16px;
 	}
 
 	.footer-column {
 		padding-right: 4em;
+
+		@include phone {
+			padding: 1em;
+		}
 
 		&:last-child {
 			padding-right: 0;

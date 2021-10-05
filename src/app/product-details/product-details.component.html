@@ -11,7 +11,7 @@
 	</div>
 
 	<div class="product-details margin-top-4">
-		<div style="margin-right: 6em">
+		<div class="prod-images">
 			<div class="product-img">
 				<img [src]="product?.images.length == 0 ? 'assets/images/default_product.png' : product?.images[largeProductImageIndex]">
 			</div>
@@ -21,7 +21,7 @@
 				</div>
 			</div>
 		</div>
-		<div>
+		<div class="prod-info">
 			<h1 class="product-name">{{product?.product_name}}</h1>
 			<h3 class="product-category">{{product?.category_name}}</h3>
 			<h3 class="manufacturer">{{product?.manufacturer}}</h3>
@@ -91,63 +91,68 @@
 
 	<mat-card class="reviews-and-ratings margin-top-4">
 		<h1>Ratings & Reviews</h1>
-		<div class="columns">
-			<div class="ratings">
-				<div class="average-rating">
-					<mat-icon *ngFor="let i of makeArrayFromNumber(floor(product?.average_rating))">star</mat-icon>
-					<mat-icon *ngFor="let i of makeArrayFromNumber(ceil(5 - product?.average_rating))">star_outline</mat-icon>
-					<h1>{{product?.average_rating | number}}</h1>
-				</div>
-				<div class="review-count">{{product?.reviews.length}} Reviews</div>
+		<div *ngIf="product?.reviews.length == 0" class="margin-top-2">
+			There are no reviews for this product yet
+		</div>
+		<div *ngIf="product?.reviews.length > 0">
+			<div class="columns">
+				<div class="ratings">
+					<div class="average-rating">
+						<mat-icon *ngFor="let i of makeArrayFromNumber(floor(product?.average_rating))">star</mat-icon>
+						<mat-icon *ngFor="let i of makeArrayFromNumber(ceil(5 - product?.average_rating))">star_outline</mat-icon>
+						<h1>{{product?.average_rating | number}}</h1>
+					</div>
+					<div class="review-count">{{product?.reviews.length}} Reviews</div>
 
-				<div class="ratings-chart">
-					<div class="rating-bar">
-						<div class="rating-label">5 Stars</div>
-						<div class="bar">
-							<div class="bar-val" style="width: {{getRatingsPercentage(5)}}%"></div>
+					<div class="ratings-chart">
+						<div class="rating-bar">
+							<div class="rating-label">5 Stars</div>
+							<div class="bar">
+								<div class="bar-val" style="width: {{getRatingsPercentage(5)}}%"></div>
+							</div>
+							<div class="rating-val">{{getRatingsPercentage(5) | number:'1.0-0'}}%</div>
 						</div>
-						<div class="rating-val">{{getRatingsPercentage(5) | number:'1.0-0'}}%</div>
-					</div>
-					<div class="rating-bar">
-						<div class="rating-label" >4 Stars</div>
-						<div class="bar">
-							<div class="bar-val" style="width: {{getRatingsPercentage(4)}}%"></div>
+						<div class="rating-bar">
+							<div class="rating-label" >4 Stars</div>
+							<div class="bar">
+								<div class="bar-val" style="width: {{getRatingsPercentage(4)}}%"></div>
+							</div>
+							<div class="rating-val">{{getRatingsPercentage(4) | number:'1.0-0'}}%</div>
 						</div>
-						<div class="rating-val">{{getRatingsPercentage(4) | number:'1.0-0'}}%</div>
-					</div>
-					<div class="rating-bar">
-						<div class="rating-label">3 Stars</div>
-						<div class="bar">
-							<div class="bar-val" style="width: {{getRatingsPercentage(3)}}%"></div>
+						<div class="rating-bar">
+							<div class="rating-label">3 Stars</div>
+							<div class="bar">
+								<div class="bar-val" style="width: {{getRatingsPercentage(3)}}%"></div>
+							</div>
+							<div class="rating-val">{{getRatingsPercentage(3) | number:'1.0-0'}}%</div>
 						</div>
-						<div class="rating-val">{{getRatingsPercentage(3) | number:'1.0-0'}}%</div>
-					</div>
-					<div class="rating-bar">
-						<div class="rating-label">2 Stars</div>
-						<div class="bar">
-							<div class="bar-val" style="width: {{getRatingsPercentage(2)}}%"></div>
+						<div class="rating-bar">
+							<div class="rating-label">2 Stars</div>
+							<div class="bar">
+								<div class="bar-val" style="width: {{getRatingsPercentage(2)}}%"></div>
+							</div>
+							<div class="rating-val">{{getRatingsPercentage(2) | number:'1.0-0'}}%</div>
 						</div>
-						<div class="rating-val">{{getRatingsPercentage(2) | number:'1.0-0'}}%</div>
-					</div>
-					<div class="rating-bar">
-						<div class="rating-label">1 Star &nbsp;</div>
-						<div class="bar">
-							<div class="bar-val" style="width: {{getRatingsPercentage(1)}}%"></div>
+						<div class="rating-bar">
+							<div class="rating-label">1 Star &nbsp;</div>
+							<div class="bar">
+								<div class="bar-val" style="width: {{getRatingsPercentage(1)}}%"></div>
+							</div>
+							<div class="rating-val">{{getRatingsPercentage(1) | number:'1.0-0'}}%</div>
 						</div>
-						<div class="rating-val">{{getRatingsPercentage(1) | number:'1.0-0'}}%</div>
 					</div>
 				</div>
-			</div>
-			<div class="reviews">
-				<div class="review" *ngFor="let review of product?.reviews">
-					<div class="review-header">
-						<h2 class="name">{{review?.firstname}} {{review?.lastname}}</h2>
-						<div class="date">{{review?.entrydate | date:'mediumDate'}}</div>
+				<div class="reviews">
+					<div class="review" *ngFor="let review of product?.reviews">
+						<div class="review-header">
+							<h3 class="name">{{review?.firstname}} {{review?.lastname}}</h3>
+							<div class="date">{{review?.entrydate | date:'mediumDate'}}</div>
+						</div>
+						<div class="rating margin-top-half">
+							<mat-icon *ngFor="let i of makeArrayFromNumber(review?.rating)">star</mat-icon>
+						</div>
+						<div class="review-text margin-top-half">{{review?.review}}</div>
 					</div>
-					<div class="rating margin-top-half">
-						<mat-icon *ngFor="let i of makeArrayFromNumber(review?.rating)">start</mat-icon>
-					</div>
-					<div class="review-text margin-top-half">{{review?.review}}</div>
 				</div>
 			</div>
 		</div>

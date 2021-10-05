@@ -23,7 +23,16 @@ export class PromotionsComponent implements OnInit {
 	ngOnInit(): void {
 		this.pService.getPromotions().subscribe(response => {
 			if(response.success) {
-				this.promotion = response.data;
+				if(response.data == null) {
+					this.promotion = {
+						url: "/products",
+						image: "assets/images/default_promo.png"
+					}
+				}
+				else{
+					this.promotion = response.data;
+				}
+
 				this.loaded.emit();
 			}
 		}, error => {
