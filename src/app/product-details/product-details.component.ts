@@ -122,4 +122,27 @@ export class ProductDetailsComponent implements OnInit {
 	addToCart(): void {
 		this.cartService.addItem(this.product.id, this.product.product_name, parseInt(this.quantityForm.value.quantity), this.selectedProductProperties);
 	}
+
+	makeArrayFromNumber(number: number) {
+		return Array.from(Array(number), (_, i) => i+1)
+	}
+
+	floor(number: number) {
+		return Math.floor(number);
+	}
+	ceil(number: number) {
+		return Math.ceil(number);
+	}
+
+	getRatingsPercentage(rating: number) {
+		let result: number = 0;
+		// @ts-ignore
+		this.product.reviews.forEach(review => {
+			if(review.rating == rating) {
+				result++;
+			}
+		})
+
+		return (result * 100) / this.product.reviews.length;
+	}
 }

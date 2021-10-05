@@ -1,0 +1,40 @@
+<div class="container">
+	<div class="flex space-between items-center">
+		<h1 class="header">Review Product</h1>
+		<button mat-raised-button color="accent" routerLink="/account/orders/{{order?.id}}">BACK TO ORDER</button>
+	</div>
+	<mat-card class="margin-top-2">
+		<div class="product">
+			<div class="image">
+				<img src="{{product?.image}}">
+			</div>
+			<div>
+				<div class="name">
+					<a routerLink="/view-product/{{product?.id}}" target="_blank">{{product?.product_name}}</a>
+				</div>
+				<div class="margin-top-1">Purchased {{order?.date | date:'medium'}}</div>
+			</div>
+		</div>
+
+		<div class="margin-top-2">
+			<form [formGroup]="reviewForm" (submit)="onPost()">
+				<mat-form-field appearance="outline" class="full-width">
+					<mat-label>Rating</mat-label>
+					<mat-select formControlName="rating">
+						<mat-option *ngFor="let i of [1,2,3,4,5]" [value]="i">{{i}} Star{{i > 1 ? 's' : ''}}</mat-option>
+					</mat-select>
+				</mat-form-field>
+				<mat-form-field appearance="outline" class="full-width">
+					<mat-label>Review</mat-label>
+					<textarea matInput rows="10" formControlName="review"></textarea>
+				</mat-form-field>
+				<div class="margin-top-1 align-center">
+					<button type="submit" mat-raised-button color="primary" [disabled]="reviewForm.invalid || formBusy">
+						<span *ngIf="!formBusy">Post Review</span>
+						<mat-spinner diameter="20" *ngIf="formBusy"></mat-spinner>
+					</button>
+				</div>
+			</form>
+		</div>
+	</mat-card>
+</div>

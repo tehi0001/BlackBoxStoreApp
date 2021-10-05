@@ -12,6 +12,7 @@ import {RegistrationDoneComponent} from "./registration-done/registration-done.c
 import {LogoutComponent} from "./logout/logout.component";
 import {ManageOrdersComponent} from "./manage-orders/manage-orders.component";
 import {ViewOrderComponent} from "./view-order/view-order.component";
+import {ReviewProductComponent} from "./review-product/review-product.component";
 
 const routes: Routes = [
 	{
@@ -86,6 +87,10 @@ const routes: Routes = [
 	{
 		path: "account/orders/:id",
 		component: ViewOrderComponent
+	},
+	{
+		path: "account/review-product/:id",
+		component: ReviewProductComponent
 	}
 ];
 

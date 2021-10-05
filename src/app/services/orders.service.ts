@@ -21,4 +21,8 @@ export class OrdersService {
 	getOne(id: number): Observable<any> {
 		return this.http.get(API_URL + "/view-order/" + id, this.userService.authHeader);
 	}
+
+	reviewProduct(id: number, data: any): Observable<any> {
+		return this.http.post(API_URL + "/review-product/" + id, data, this.userService.authHeader);
+	}
 }

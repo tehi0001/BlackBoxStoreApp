@@ -34,6 +34,7 @@ import {PromotionService} from "./services/promotion.service";
 import {OrdersService} from "./services/orders.service";
 import { OrderStatusPipe } from './pipes/order-status.pipe';
 import { ViewOrderComponent } from './view-order/view-order.component';
+import { ReviewProductComponent } from './review-product/review-product.component';
 
 @NgModule({
 	declarations: [
@@ -56,7 +57,8 @@ import { ViewOrderComponent } from './view-order/view-order.component';
   LogoutComponent,
   ManageOrdersComponent,
   OrderStatusPipe,
-  ViewOrderComponent
+  ViewOrderComponent,
+  ReviewProductComponent
 	],
 	imports: [
 		BrowserModule,
