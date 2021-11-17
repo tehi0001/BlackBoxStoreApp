@@ -23,11 +23,11 @@
 		</button>
 
 		<mat-menu #userMenu>
+			<!--
 			<button mat-menu-item>
 				<mat-icon>manage_accounts</mat-icon>
 				<span>My Account</span>
 			</button>
-			<!--
 			<button mat-menu-item>
 				<mat-icon>local_shipping</mat-icon>
 				<span>My Addresses</span>
@@ -65,11 +65,11 @@
 	</div>
 	<div style="flex: 1 1 100%" class="hidden-xs"></div>
 	<div class="top-navs hidden-xs">
-		<a href="#">
+		<a routerLink="/pages/locations">
 			<mat-icon>location_on</mat-icon>
 			<div>Find a store</div>
 		</a>
-		<a href="#">
+		<a routerLink="/pages/customer-service">
 			<mat-icon>contact_support</mat-icon>
 			<div>Customer service</div>
 		</a>
@@ -108,20 +108,21 @@
 	<div class="footer-column footer-about hidden-xs">
 		<h2>ABOUT US</h2>
 		<p>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et nulla consectetur, pellentesque lorem eget, tincidunt augue.
-			Ut sit amet libero tortor. Aenean faucibus suscipit dui sed accumsan. Duis mollis laoreet auctor.
-			Etiam ipsum orci, auctor vel molestie aliquam, sollicitudin vel nunc.
+			BlackBox Supplies was established in 2017 and employs staff that possess key
+			knowledge and strength. Our business is dedicated to the marketing of stationery,
+			books and office automation & digital copiers (both black &white and colour),
+			network ready multifunctional products and network laser printers as a range of imaging products.
 		</p>
-		<a href="#">Find out more</a>
+		<a href="/pages/about">Find out more</a>
 	</div>
 	<div class="footer-column footer-links">
 		<ul>
-			<li><a href="#">Customer Service</a></li>
-			<li><a href="#">F.A.Q</a></li>
-			<li><a href="#">Return Policy</a></li>
-			<li><a href="#">Terms & Conditions</a></li>
-			<li><a href="#">Privacy Policy</a></li>
-			<li><a href="#">Cookie Policy</a></li>
+			<li><a routerLink="/pages/customer-service">Customer Service</a></li>
+			<li><a routerLink="/pages/faq">F.A.Q</a></li>
+			<li><a routerLink="/pages/return-policy">Return Policy</a></li>
+			<li><a routerLink="/pages/terms">Terms & Conditions</a></li>
+			<li><a routerLink="/pages/privacy-policy">Privacy Policy</a></li>
+			<li><a routerLink="/pages/cookie-policy">Cookie Policy</a></li>
 		</ul>
 	</div>
 	<div class="footer-column footer-payments">

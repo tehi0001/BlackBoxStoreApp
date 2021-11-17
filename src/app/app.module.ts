@@ -35,6 +35,9 @@ import {OrdersService} from "./services/orders.service";
 import { OrderStatusPipe } from './pipes/order-status.pipe';
 import { ViewOrderComponent } from './view-order/view-order.component';
 import { ReviewProductComponent } from './review-product/review-product.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { StaticPagesComponent } from './static-pages/static-pages.component';
 
 @NgModule({
 	declarations: [
@@ -58,7 +61,8 @@ import { ReviewProductComponent } from './review-product/review-product.componen
   ManageOrdersComponent,
   OrderStatusPipe,
   ViewOrderComponent,
-  ReviewProductComponent
+  ReviewProductComponent,
+  StaticPagesComponent
 	],
 	imports: [
 		BrowserModule,
@@ -67,7 +71,13 @@ import { ReviewProductComponent } from './review-product/review-product.componen
 		MaterialModule,
 		ReactiveFormsModule,
 		HttpClientModule,
-		FormsModule
+		FormsModule,
+  ServiceWorkerModule.register('ngsw-worker.js', {
+    enabled: environment.production,
+    // Register the ServiceWorker as soon as the app is stable
+    // or after 30 seconds (whichever comes first).
+    registrationStrategy: 'registerWhenStable:30000'
+  })
 	],
 	providers: [ProductService, CartService, ApiService, DialogService, SessionService, UserService, PromotionService, OrdersService],
 	bootstrap: [AppComponent]

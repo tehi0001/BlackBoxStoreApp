@@ -13,6 +13,7 @@ import {LogoutComponent} from "./logout/logout.component";
 import {ManageOrdersComponent} from "./manage-orders/manage-orders.component";
 import {ViewOrderComponent} from "./view-order/view-order.component";
 import {ReviewProductComponent} from "./review-product/review-product.component";
+import { StaticPagesComponent } from './static-pages/static-pages.component';
 
 const routes: Routes = [
 	{
@@ -91,6 +92,15 @@ const routes: Routes = [
 	{
 		path: "account/review-product/:id",
 		component: ReviewProductComponent
+	},
+	{
+		path: "pages",
+		children: [
+			{
+				path: "**",
+				component: StaticPagesComponent
+			}
+		]
 	}
 ];
 

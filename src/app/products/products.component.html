@@ -13,32 +13,58 @@
 
 	<div *ngIf="!loadingProductsFromApi && products.length == 0" class="no-results">
 		<div>Oops...we're sorry we don't have products in the selected category.</div>
-		<div class="margin-top-2"><a routerLink="/products">Browse all our products</a> </div>
+		<div class="margin-top-2">
+			<a routerLink="/products" *ngIf="!isFiltered">Browse all our products</a> 
+			<a (click)="clearFilters()" *ngIf="isFiltered" class="clickable">Browse all our products</a> 
+		</div>
 	</div>
 
-	<div class="product-list margin-top-3" *ngIf="!loadingProductsFromApi && products.length > 0">
-		<mat-card class="product" *ngFor="let product of products">
-			<div class="product-img align-center">
-				<img [src]="product?.image ? product?.image : 'assets/images/default_product.png'" class="clickable" routerLink="/view-product/{{product?.id}}">
-			</div>
-			<div class="product-details">
-				<div class="product-info align-center margin-top-1">
-					{{product?.product_name}}
+	<div *ngIf="!loadingProductsFromApi && products.length > 0" class="margin-top-3">
+		<div>
+			<form [formGroup]="filterForm" class="flex items-center hidden-xs" style="gap: 1em;" (submit)="filter()">
+				<mat-form-field appearance="fill">
+					<mat-label>Min. Price</mat-label>
+					<input type="number" matInput min="0" formControlName="minPrice">
+				</mat-form-field>
+				<mat-form-field appearance="fill">
+					<mat-label>Max. Price</mat-label>
+					<input type="number" matInput min="0" formControlName="maxPrice">
+				</mat-form-field>
+				<mat-form-field appearance="fill">
+					<mat-label>In stock?</mat-label>
+					<mat-select formControlName="inStock">
+						<mat-option value="1">Yes</mat-option>
+						<mat-option value="2">No</mat-option>
+					</mat-select>
+				</mat-form-field>
+				<div style="padding-bottom: 1em;"><button type="submit" mat-raised-button color="accent">FILTER</button></div>
+				<div style="padding-bottom: 1em;"><button type="button" mat-raised-button color="warn" (click)="clearFilters()">CLEAR</button></div>
+			</form>
+		</div>
+		<div class="product-list margin-top-1">
+			<mat-card class="product" *ngFor="let product of products">
+				<div class="product-img align-center">
+					<img [src]="product?.image ? product?.image : 'assets/images/default_product.png'" class="clickable" routerLink="/view-product/{{product?.id}}">
 				</div>
-				<div style="display: flex; justify-content: space-between; align-items: center" class="margin-top-1">
-					<div>
-						<div class="product-price" [ngClass]="{discounted: product?.discount > 0}">{{product?.price | currency:'ZAR':'symbol-narrow'}}</div>
-						<div class="product-price" *ngIf="product?.discount > 0">{{product?.price | discountedPrice:product?.discount | currency:'ZAR':'symbol-narrow'}}</div>
+				<div class="product-details">
+					<div class="product-info align-center margin-top-1">
+						{{product?.product_name}}
 					</div>
-					<div class="product-in-stock">
-						{{product?.stock > 0 ? 'In Stock' : 'Out of stock'}}
+					<div style="display: flex; justify-content: space-between; align-items: center" class="margin-top-1">
+						<div>
+							<div class="product-price" [ngClass]="{discounted: product?.discount > 0}">{{product?.price | currency:'ZAR':'symbol-narrow'}}</div>
+							<div class="product-price" *ngIf="product?.discount > 0">{{product?.price | discountedPrice:product?.discount | currency:'ZAR':'symbol-narrow'}}</div>
+						</div>
+						<div class="product-in-stock">
+							{{product?.stock > 0 ? 'In Stock' : 'Out of stock'}}
+						</div>
+					</div>
+					<div class="discount-badge" *ngIf="product?.discount > 0">
+						<div>{{product?.discount | number}}%</div>
+						<div>OFF</div>
 					</div>
 				</div>
-				<div class="discount-badge" *ngIf="product?.discount > 0">
-					<div>{{product?.discount | number}}%</div>
-					<div>OFF</div>
-				</div>
-			</div>
-		</mat-card>
+			</mat-card>
+		</div>
 	</div>
 </div>

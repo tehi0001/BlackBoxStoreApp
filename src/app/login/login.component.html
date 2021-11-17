@@ -16,7 +16,7 @@
 			</mat-form-field>
 			<div style="display: flex; justify-content: space-between; align-items: center">
 				<mat-checkbox color="primary" [checked]="rememberUser">Remember me on this device</mat-checkbox>
-				<a href="#">Need Help?</a>
+				<a routerLink="/login">Need Help?</a>
 			</div>
 			<div class="margin-top-2">
 				<button type="submit" mat-raised-button color="primary" class="full-width" [disabled]="authForm.invalid || authFormBusy">
